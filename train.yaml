@@ -1,0 +1,19 @@
+model: mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit
+data: data
+train: true
+seed: 42
+mask_prompt: true
+iters: 60
+batch_size: 1
+max_seq_length: 512
+num_layers: 4
+learning_rate: 0.0001
+steps_per_report: 10
+steps_per_eval: 20
+val_batches: 4
+save_every: 60
+adapter_path: adapters
+lora_parameters:
+  rank: 8
+  scale: 16.0
+  dropout: 0.0
