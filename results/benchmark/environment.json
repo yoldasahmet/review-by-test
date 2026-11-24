@@ -1,0 +1,12 @@
+{
+  "chip": "Apple M1 Pro",
+  "memory_bytes": 17179869184,
+  "macos": "26.5.1",
+  "architecture": "arm64",
+  "python": "3.12.10",
+  "node": "v22.22.2",
+  "vitest": "3.2.7",
+  "mlx": "0.32.4",
+  "mlx-lm": "0.32.2",
+  "huggingface-hub": "2.4.0"
+}

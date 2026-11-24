@@ -1,0 +1,190 @@
+{
+  "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "adapter_sha256": "91965f107ed9411f58568860d709bdc08bc4e862d723b80566768ebc486c2d59",
+  "old": "Choose an input that fails before the fix.",
+  "new": "Choose an input. Compute the old and fixed functions' return values for that input. If the values are the same, choose another input. If they differ, assert the fixed function's return value using toBe(...). Output only the Vitest test.",
+  "temperature": 0,
+  "max_tokens": 192,
+  "split": "fixtures.cases('valid')",
+  "records": [
+    {
+      "model": "original",
+      "prompt": "old",
+      "case": "wholeMinutes",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function wholeMinutes(n: number) {\n-  return Math.ceil(n / 60);\n+  return Math.floor(n / 60);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { wholeMinutes } from './subject';\n\ntest('should return the whole minutes of a number', () => {\n  expect(wholeMinutes(30)).toBe(0);\n  expect(wholeMinutes(60)).toBe(1);\n  expect(wholeMinutes(120)).toBe(2);\n  expect(wholeMinutes(180)).toBe(3);\n  expect(wholeMinutes(240)).toBe(4);\n  expect(wholeMinutes(300)).toBe(5);\n  expect(wholeMinutes(360)).toBe(6);\n  expect(wholeMinutes(420)).toBe(7);\n  expect(wholeMinutes(480)).toBe(8);\n  expect(wholeMinutes(540)).toBe(9);\n  expect(wholeMinutes(600)).toBe(10);\n  expect",
+      "status": "outside_format"
+    },
+    {
+      "model": "original",
+      "prompt": "old",
+      "case": "expired",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function expired(n: number) {\n-  return n < 0;\n+  return n <= 0;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { expired } from './subject';\n\ntest('expired should return true for negative numbers', () => {\n  expect(expired(-1)).toBe(true);\n});\n```",
+      "status": "passes_both",
+      "argument": "-1",
+      "expected": "true",
+      "before": true,
+      "after": true,
+      "distinguishes": false
+    },
+    {
+      "model": "original",
+      "prompt": "old",
+      "case": "remaining",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function remaining(n: number) {\n-  return 30 - n;\n+  return Math.max(0, 30 - n);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { remaining } from './subject';\n\ntest('remaining should return 0 when input is 30', () => {\n  expect(remaining(30)).toBe(0);\n});\n```",
+      "status": "passes_both",
+      "argument": "30",
+      "expected": "0",
+      "before": 0,
+      "after": 0,
+      "distinguishes": false
+    },
+    {
+      "model": "original",
+      "prompt": "old",
+      "case": "milliseconds",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function milliseconds(n: number) {\n-  return n * 100;\n+  return n * 1000;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { milliseconds } from './subject';\n\ntest('milliseconds should return 1000 for 1', () => {\n  expect(milliseconds(1)).toBe(1000);\n});\n```",
+      "status": "red_green",
+      "argument": "1",
+      "expected": "1000",
+      "before": 100,
+      "after": 1000,
+      "distinguishes": true
+    },
+    {
+      "model": "original",
+      "prompt": "new",
+      "case": "wholeMinutes",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function wholeMinutes(n: number) {\n-  return Math.ceil(n / 60);\n+  return Math.floor(n / 60);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { wholeMinutes } from './subject';\n\ntest('wholeMinutes should return the ceiling of n / 60', () => {\n  expect(wholeMinutes(30)).toBe(1);\n  expect(wholeMinutes(60)).toBe(1);\n  expect(wholeMinutes(120)).toBe(2);\n  expect(wholeMinutes(180)).toBe(3);\n  expect(wholeMinutes(240)).toBe(4);\n  expect(wholeMinutes(300)).toBe(5);\n  expect(wholeMinutes(360)).toBe(6);\n  expect(wholeMinutes(420)).toBe(7);\n  expect(wholeMinutes(480)).toBe(8);\n  expect(wholeMinutes(540)).toBe(9);\n  expect(wholeMinutes(600)).toBe(1",
+      "status": "outside_format"
+    },
+    {
+      "model": "original",
+      "prompt": "new",
+      "case": "expired",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function expired(n: number) {\n-  return n < 0;\n+  return n <= 0;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { expired } from './subject';\n\ntest('expired should return true for negative numbers', () => {\n  expect(expired(-1)).toBe(true);\n});\n\ntest('expired should return false for non-negative numbers', () => {\n  expect(expired(0)).toBe(false);\n  expect(expired(1)).toBe(false);\n});\n```",
+      "status": "outside_format"
+    },
+    {
+      "model": "original",
+      "prompt": "new",
+      "case": "remaining",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function remaining(n: number) {\n-  return 30 - n;\n+  return Math.max(0, 30 - n);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { remaining } from './subject';\n\ntest('remaining function returns 0 when input is 30', () => {\n  expect(remaining(30)).toBe(0);\n});\n\ntest('remaining function returns 20 when input is 10', () => {\n  expect(remaining(10)).toBe(20);\n});\n\ntest('remaining function returns 10 when input is 20', () => {\n  expect(remaining(20)).toBe(10);\n});\n```",
+      "status": "outside_format"
+    },
+    {
+      "model": "original",
+      "prompt": "new",
+      "case": "milliseconds",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function milliseconds(n: number) {\n-  return n * 100;\n+  return n * 1000;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { milliseconds } from './subject';\n\ntest('milliseconds should return the correct value', () => {\n  expect(milliseconds(1)).toBe(1000);\n  expect(milliseconds(0)).toBe(0);\n  expect(milliseconds(-1)).toBe(-1000);\n});\n```",
+      "status": "outside_format"
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "old",
+      "case": "wholeMinutes",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function wholeMinutes(n: number) {\n-  return Math.ceil(n / 60);\n+  return Math.floor(n / 60);\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { wholeMinutes } from './subject';\n\ntest('wholeMinutes regression', () => {\n  expect(wholeMinutes(6)).toBe(1);\n});",
+      "status": "fails_on_fix",
+      "argument": "6",
+      "expected": "1",
+      "before": 1,
+      "after": 0,
+      "distinguishes": true
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "old",
+      "case": "expired",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function expired(n: number) {\n-  return n < 0;\n+  return n <= 0;\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { expired } from './subject';\n\ntest('expired regression', () => {\n  expect(expired(0)).toBe(true);\n});",
+      "status": "red_green",
+      "argument": "0",
+      "expected": "true",
+      "before": false,
+      "after": true,
+      "distinguishes": true
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "old",
+      "case": "remaining",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function remaining(n: number) {\n-  return 30 - n;\n+  return Math.max(0, 30 - n);\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { remaining } from './subject';\n\ntest('remaining regression', () => {\n  expect(remaining(30)).toBe(0);\n});",
+      "status": "passes_both",
+      "argument": "30",
+      "expected": "0",
+      "before": 0,
+      "after": 0,
+      "distinguishes": false
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "old",
+      "case": "milliseconds",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function milliseconds(n: number) {\n-  return n * 100;\n+  return n * 1000;\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { milliseconds } from './subject';\n\ntest('milliseconds regression', () => {\n  expect(milliseconds(1)).toBe(1000);\n});",
+      "status": "red_green",
+      "argument": "1",
+      "expected": "1000",
+      "before": 100,
+      "after": 1000,
+      "distinguishes": true
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "new",
+      "case": "wholeMinutes",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function wholeMinutes(n: number) {\n-  return Math.ceil(n / 60);\n+  return Math.floor(n / 60);\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { wholeMinutes } from './subject';\n\ntest('wholeMinutes regression', () => {\n  expect(wholeMinutes(6)).toBe(1);\n  expect(wholeMinutes(7)).toBe(1);\n});",
+      "status": "outside_format"
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "new",
+      "case": "expired",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function expired(n: number) {\n-  return n < 0;\n+  return n <= 0;\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { expired } from './subject';\n\ntest('expired regression', () => {\n  expect(expired(0)).toBe(true);\n});",
+      "status": "red_green",
+      "argument": "0",
+      "expected": "true",
+      "before": false,
+      "after": true,
+      "distinguishes": true
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "new",
+      "case": "remaining",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function remaining(n: number) {\n-  return 30 - n;\n+  return Math.max(0, 30 - n);\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { remaining } from './subject';\n\ntest('remaining regression', () => {\n  expect(remaining(29)).toBe(0);\n});",
+      "status": "fails_on_fix",
+      "argument": "29",
+      "expected": "0",
+      "before": 1,
+      "after": 1,
+      "distinguishes": false
+    },
+    {
+      "model": "fine-tuned",
+      "prompt": "new",
+      "case": "milliseconds",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function milliseconds(n: number) {\n-  return n * 100;\n+  return n * 1000;\n }\n",
+      "raw": "import { expect, test } from 'vitest';\nimport { milliseconds } from './subject';\n\ntest('milliseconds regression', () => {\n  expect(milliseconds(1)).toBe(1000);\n});",
+      "status": "red_green",
+      "argument": "1",
+      "expected": "1000",
+      "before": 100,
+      "after": 1000,
+      "distinguishes": true
+    }
+  ]
+}

@@ -1,0 +1,5718 @@
+{
+  "design": {
+    "dataset_sha256": "3c52b93daa7bb9ed9125f36777f67f053e8eb6125069638189ddc60a4c1c9eff",
+    "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "reviewer": {
+      "prompt": "Review this TypeScript pull request. The author describes it as a refactor that keeps behavior unchanged. Answer {\"verdict\": \"bug\"} if the change makes the function return a different value for any number input. Answer {\"verdict\": \"ok\"} if every input returns the same value as before. Output only the JSON.",
+      "answers": {
+        "bug": "{\"verdict\": \"bug\"}",
+        "ok": "{\"verdict\": \"ok\"}"
+      },
+      "decision": "bug when the bug answer's log-probability exceeds the ok answer's by more than the threshold",
+      "base_calibration": "threshold on the bug-minus-ok margin with the best validation balanced accuracy",
+      "checkpoints": [
+        60,
+        120,
+        180,
+        240
+      ],
+      "selection": "validation balanced accuracy at threshold 0; a tie keeps fewer steps"
+    },
+    "prover": {
+      "patch": "the pull request reversed into the revert a reviewer would suggest",
+      "prompt": "original",
+      "grammar": {
+        "template": "canonical Vitest test with the changed export and two literal slots",
+        "number_pattern": "-?(?:0|[1-9][0-9]{0,14})(?:\\.[0-9]{1,12})?",
+        "decoder": "greedy over grammar-valid Qwen tokens",
+        "name_source": "exported signature in the diff"
+      },
+      "max_tokens": 192,
+      "expected_value": "main's return at the model's input, measured with Vitest"
+    },
+    "gate": "comment only when the reviewer flags a bug and the proof fails on the pull request and passes on main"
+  },
+  "references": [
+    {
+      "split": "train",
+      "name": "requiresFreight",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 3
+    },
+    {
+      "split": "train",
+      "name": "requiresFreight",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isLetterSize",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 3
+    },
+    {
+      "split": "train",
+      "name": "isLetterSize",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "canUseLocker",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 3
+    },
+    {
+      "split": "train",
+      "name": "canUseLocker",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "palletsRequired",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37765
+    },
+    {
+      "split": "train",
+      "name": "palletsRequired",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "billableWeight",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38020
+    },
+    {
+      "split": "train",
+      "name": "billableWeight",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "remainingPickupSlots",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 17754
+    },
+    {
+      "split": "train",
+      "name": "remainingPickupSlots",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "crateCharge",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 4
+    },
+    {
+      "split": "train",
+      "name": "crateCharge",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "canBookAhead",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19002
+    },
+    {
+      "split": "train",
+      "name": "canBookAhead",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "weekdayIndex",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19474
+    },
+    {
+      "split": "train",
+      "name": "weekdayIndex",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "hoursToSeconds",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38019
+    },
+    {
+      "split": "train",
+      "name": "hoursToSeconds",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "hourOfDay",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 7197
+    },
+    {
+      "split": "train",
+      "name": "hourOfDay",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isLeapYear",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 94
+    },
+    {
+      "split": "train",
+      "name": "isLeapYear",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "signedMinuteOffset",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19003
+    },
+    {
+      "split": "train",
+      "name": "signedMinuteOffset",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isWeekend",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 6
+    },
+    {
+      "split": "train",
+      "name": "isWeekend",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "stepsPerMinute",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38019
+    },
+    {
+      "split": "train",
+      "name": "stepsPerMinute",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "fahrenheitToCelsius",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "fahrenheitToCelsius",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "normalizedBrightness",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 27517
+    },
+    {
+      "split": "train",
+      "name": "normalizedBrightness",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isMissingReading",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19004
+    },
+    {
+      "split": "train",
+      "name": "isMissingReading",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "absoluteDrift",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 21106
+    },
+    {
+      "split": "train",
+      "name": "absoluteDrift",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "sampleBytes",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "sampleBytes",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "nominalVoltage",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38019
+    },
+    {
+      "split": "train",
+      "name": "nominalVoltage",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "renewalsRemaining",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38020
+    },
+    {
+      "split": "train",
+      "name": "renewalsRemaining",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "standardLoanDays",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "standardLoanDays",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isMemberTier",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37810
+    },
+    {
+      "split": "train",
+      "name": "isMemberTier",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "archiveBox",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 3207
+    },
+    {
+      "split": "train",
+      "name": "archiveBox",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "bundleWeightGrams",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "bundleWeightGrams",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isLargePrintCode",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "isLargePrintCode",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "fineCapCents",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18174
+    },
+    {
+      "split": "train",
+      "name": "fineCapCents",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "prorateCents",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 17357
+    },
+    {
+      "split": "train",
+      "name": "prorateCents",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isTrialActive",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 17544
+    },
+    {
+      "split": "train",
+      "name": "isTrialActive",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "seatOverageCents",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19321
+    },
+    {
+      "split": "train",
+      "name": "seatOverageCents",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "annualCyclesCovered",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 16497
+    },
+    {
+      "split": "train",
+      "name": "annualCyclesCovered",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "activeRatio",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38020
+    },
+    {
+      "split": "train",
+      "name": "activeRatio",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "evenHistogramBin",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 28523
+    },
+    {
+      "split": "train",
+      "name": "evenHistogramBin",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "lastCompleteHour",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18902
+    },
+    {
+      "split": "train",
+      "name": "lastCompleteHour",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "nextSamplePowerOfTwo",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18983
+    },
+    {
+      "split": "train",
+      "name": "nextSamplePowerOfTwo",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "inclusiveRowsLeft",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "inclusiveRowsLeft",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "cursorExpiresAt",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38019
+    },
+    {
+      "split": "train",
+      "name": "cursorExpiresAt",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "shouldFetchAnotherBatch",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19017
+    },
+    {
+      "split": "train",
+      "name": "shouldFetchAnotherBatch",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "clampEmptyCursor",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19006
+    },
+    {
+      "split": "train",
+      "name": "clampEmptyCursor",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "resumeIndex",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "resumeIndex",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "padToEvenWidth",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 34970
+    },
+    {
+      "split": "train",
+      "name": "padToEvenWidth",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "hasRenderableFrames",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 6106
+    },
+    {
+      "split": "train",
+      "name": "hasRenderableFrames",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isSupportedAudioRate",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isSupportedAudioRate",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "previewWidth",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 28506
+    },
+    {
+      "split": "train",
+      "name": "previewWidth",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "transparentPixelAlpha",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 4
+    },
+    {
+      "split": "train",
+      "name": "transparentPixelAlpha",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "departureBoardMinute",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37817
+    },
+    {
+      "split": "train",
+      "name": "departureBoardMinute",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isOffPeakMinute",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 2
+    },
+    {
+      "split": "train",
+      "name": "isOffPeakMinute",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "carriagesForRiders",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 29619
+    },
+    {
+      "split": "train",
+      "name": "carriagesForRiders",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "transferCreditCents",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 22152
+    },
+    {
+      "split": "train",
+      "name": "transferCreditCents",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "dispatchBufferSeconds",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38020
+    },
+    {
+      "split": "train",
+      "name": "dispatchBufferSeconds",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "platformForTrain",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "platformForTrain",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "dualPumpOverlapSeconds",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 34866
+    },
+    {
+      "split": "train",
+      "name": "dualPumpOverlapSeconds",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isVentOpen",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 20896
+    },
+    {
+      "split": "train",
+      "name": "isVentOpen",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "waterPerTrayMl",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37950
+    },
+    {
+      "split": "train",
+      "name": "waterPerTrayMl",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "filterServiceWeek",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "filterServiceWeek",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "lampDutyPercent",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 20686
+    },
+    {
+      "split": "train",
+      "name": "lampDutyPercent",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "shouldIrrigate",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19002
+    },
+    {
+      "split": "train",
+      "name": "shouldIrrigate",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "longitude360",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 27486
+    },
+    {
+      "split": "train",
+      "name": "longitude360",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "metersPerPixel",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38016
+    },
+    {
+      "split": "train",
+      "name": "metersPerPixel",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "hemisphereIndex",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "hemisphereIndex",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "tileSpan",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 30105
+    },
+    {
+      "split": "train",
+      "name": "tileSpan",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "inPolarCap",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 12022
+    },
+    {
+      "split": "train",
+      "name": "inPolarCap",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "terrainColorBand",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19003
+    },
+    {
+      "split": "train",
+      "name": "terrainColorBand",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "passesGauge",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38000
+    },
+    {
+      "split": "train",
+      "name": "passesGauge",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "calibratedPressure",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "calibratedPressure",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "curingMinutes",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 4
+    },
+    {
+      "split": "train",
+      "name": "curingMinutes",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "specimenMassGrams",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 36823
+    },
+    {
+      "split": "train",
+      "name": "specimenMassGrams",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "dilutionMilliliters",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "dilutionMilliliters",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "compressionDeltaMm",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38020
+    },
+    {
+      "split": "train",
+      "name": "compressionDeltaMm",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "softWrapRows",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19994
+    },
+    {
+      "split": "train",
+      "name": "softWrapRows",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "indentSpaces",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19017
+    },
+    {
+      "split": "train",
+      "name": "indentSpaces",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isWideGlyphCell",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18910
+    },
+    {
+      "split": "train",
+      "name": "isWideGlyphCell",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "glyphAdvancePx",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 25806
+    },
+    {
+      "split": "train",
+      "name": "glyphAdvancePx",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "verticalOriginPx",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38016
+    },
+    {
+      "split": "train",
+      "name": "verticalOriginPx",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "alignToTab",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 21005
+    },
+    {
+      "split": "train",
+      "name": "alignToTab",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isFrozenRain",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 4
+    },
+    {
+      "split": "train",
+      "name": "isFrozenRain",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "pressureAnomalyHpa",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "pressureAnomalyHpa",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "rainBucketDepthMm",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 35569
+    },
+    {
+      "split": "train",
+      "name": "rainBucketDepthMm",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "gustKilometersPerHour",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38017
+    },
+    {
+      "split": "train",
+      "name": "gustKilometersPerHour",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "windOctant",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18894
+    },
+    {
+      "split": "train",
+      "name": "windOctant",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "canPublishSnowCount",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 31912
+    },
+    {
+      "split": "train",
+      "name": "canPublishSnowCount",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "finalTrickBonus",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "finalTrickBonus",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "pocketScore",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38017
+    },
+    {
+      "split": "train",
+      "name": "pocketScore",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "drawPenalty",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 33952
+    },
+    {
+      "split": "train",
+      "name": "drawPenalty",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "isTieBreakerNeeded",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 3
+    },
+    {
+      "split": "train",
+      "name": "isTieBreakerNeeded",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "completedSets",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 7619
+    },
+    {
+      "split": "train",
+      "name": "completedSets",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "rankAfterMatch",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18017
+    },
+    {
+      "split": "train",
+      "name": "rankAfterMatch",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "usageBlockKwh",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37757
+    },
+    {
+      "split": "train",
+      "name": "usageBlockKwh",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "weekUsageKwh",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38020
+    },
+    {
+      "split": "train",
+      "name": "weekUsageKwh",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "meterPulseCount",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "train",
+      "name": "meterPulseCount",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "hasSolarSurplus",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 1582
+    },
+    {
+      "split": "train",
+      "name": "hasSolarSurplus",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "batteryReserveWh",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38017
+    },
+    {
+      "split": "train",
+      "name": "batteryReserveWh",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "train",
+      "name": "exportedKwhDisplay",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19017
+    },
+    {
+      "split": "train",
+      "name": "exportedKwhDisplay",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "confidenceBandWidth",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38016
+    },
+    {
+      "split": "valid",
+      "name": "confidenceBandWidth",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "surveyWeight",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 16914
+    },
+    {
+      "split": "valid",
+      "name": "surveyWeight",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "isValidLikertScore",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 408
+    },
+    {
+      "split": "valid",
+      "name": "isValidLikertScore",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "samplingInterval",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 8414
+    },
+    {
+      "split": "valid",
+      "name": "samplingInterval",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "followUpCredits",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19426
+    },
+    {
+      "split": "valid",
+      "name": "followUpCredits",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "weightedQuestionPoints",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "valid",
+      "name": "weightedQuestionPoints",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "reverbDelayMilliseconds",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37985
+    },
+    {
+      "split": "valid",
+      "name": "reverbDelayMilliseconds",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "soundPressureDb",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19014
+    },
+    {
+      "split": "valid",
+      "name": "soundPressureDb",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "octaveStep",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 9583
+    },
+    {
+      "split": "valid",
+      "name": "octaveStep",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "echoCount",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38017
+    },
+    {
+      "split": "valid",
+      "name": "echoCount",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "isClipping",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18903
+    },
+    {
+      "split": "valid",
+      "name": "isClipping",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "remainingCalibrationSeconds",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 29903
+    },
+    {
+      "split": "valid",
+      "name": "remainingCalibrationSeconds",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "dryDiameterMm",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37159
+    },
+    {
+      "split": "valid",
+      "name": "dryDiameterMm",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "glazeMixGrams",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 23308
+    },
+    {
+      "split": "valid",
+      "name": "glazeMixGrams",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "bisqueRampMinutes",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 15960
+    },
+    {
+      "split": "valid",
+      "name": "bisqueRampMinutes",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "needsSecondCoat",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18804
+    },
+    {
+      "split": "valid",
+      "name": "needsSecondCoat",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "firingBatchLabel",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 16917
+    },
+    {
+      "split": "valid",
+      "name": "firingBatchLabel",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "clayReclaimYield",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "valid",
+      "name": "clayReclaimYield",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "depthUnderKeel",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "valid",
+      "name": "depthUnderKeel",
+      "verdict": "ok",
+      "change": "extract-result",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "distanceForLegNm",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18000
+    },
+    {
+      "split": "valid",
+      "name": "distanceForLegNm",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "remainingAnchorScopeMeters",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18974
+    },
+    {
+      "split": "valid",
+      "name": "remainingAnchorScopeMeters",
+      "verdict": "ok",
+      "change": "swap-min-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "tideQuarterIndex",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "valid",
+      "name": "tideQuarterIndex",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "isOnPortSide",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 18999
+    },
+    {
+      "split": "valid",
+      "name": "isOnPortSide",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "valid",
+      "name": "watchRotationCrew",
+      "verdict": "bug",
+      "change": "revert-fix",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 35982
+    },
+    {
+      "split": "valid",
+      "name": "watchRotationCrew",
+      "verdict": "ok",
+      "change": "rename-parameter",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "interchangeFeeCents",
+      "verdict": "bug",
+      "change": "round-to-floor",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19004
+    },
+    {
+      "split": "test",
+      "name": "authorizationFeeCents",
+      "verdict": "bug",
+      "change": "dropped-zero-guard",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 4
+    },
+    {
+      "split": "test",
+      "name": "meetsMinimumCharge",
+      "verdict": "bug",
+      "change": "inclusive-to-exclusive",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 3
+    },
+    {
+      "split": "test",
+      "name": "refundableFeeCents",
+      "verdict": "ok",
+      "change": "ternary-to-if",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "processingFeeCents",
+      "verdict": "ok",
+      "change": "named-constants",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "isMicroPayment",
+      "verdict": "ok",
+      "change": "flip-comparison",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "vatCents",
+      "verdict": "bug",
+      "change": "fractional-cents",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37629
+    },
+    {
+      "split": "test",
+      "name": "isSmallInvoice",
+      "verdict": "bug",
+      "change": "off-by-one-limit",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 1
+    },
+    {
+      "split": "test",
+      "name": "creditNoteVatCents",
+      "verdict": "bug",
+      "change": "dropped-sign",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 38023
+    },
+    {
+      "split": "test",
+      "name": "invoiceTotalCents",
+      "verdict": "ok",
+      "change": "extract-variable",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "vatBandIndex",
+      "verdict": "ok",
+      "change": "guards-to-ternary",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "invoiceLineCents",
+      "verdict": "ok",
+      "change": "swap-max-arguments",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "monthlyInterestCents",
+      "verdict": "bug",
+      "change": "dropped-monthly-division",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 36268
+    },
+    {
+      "split": "test",
+      "name": "lateFeeCents",
+      "verdict": "bug",
+      "change": "dropped-cap",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 17964
+    },
+    {
+      "split": "test",
+      "name": "remainingTermMonths",
+      "verdict": "bug",
+      "change": "dropped-clamp",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 15234
+    },
+    {
+      "split": "test",
+      "name": "balanceAfterPaymentCents",
+      "verdict": "ok",
+      "change": "named-constant",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "isInGracePeriod",
+      "verdict": "ok",
+      "change": "de-morgan",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "arrearsCategory",
+      "verdict": "ok",
+      "change": "reordered-guards",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "payoutAfterReserveCents",
+      "verdict": "bug",
+      "change": "floor-to-round",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 19003
+    },
+    {
+      "split": "test",
+      "name": "eurToUsdCents",
+      "verdict": "bug",
+      "change": "inverted-rate",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 37333
+    },
+    {
+      "split": "test",
+      "name": "canInstantPayout",
+      "verdict": "bug",
+      "change": "inclusive-to-exclusive-limit",
+      "witness_red_green": true,
+      "sampled_inputs": 38023,
+      "differing_inputs": 1
+    },
+    {
+      "split": "test",
+      "name": "settlementWeekday",
+      "verdict": "ok",
+      "change": "commuted-addition",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "payoutFeeCents",
+      "verdict": "ok",
+      "change": "folded-constant",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    },
+    {
+      "split": "test",
+      "name": "isWeekendSettlement",
+      "verdict": "ok",
+      "change": "reordered-condition",
+      "witness_red_green": false,
+      "sampled_inputs": 38023,
+      "differing_inputs": 0
+    }
+  ],
+  "selection": {
+    "dataset_sha256": "3c52b93daa7bb9ed9125f36777f67f053e8eb6125069638189ddc60a4c1c9eff",
+    "checkpoint_step": 240,
+    "base_threshold": 0.23350238800048828
+  },
+  "validation": {
+    "base": {
+      "rows": [
+        {
+          "name": "confidenceBandWidth",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.7187252044677734,
+          "ok_logprob": -1.7959785461425781,
+          "margin": 1.0772533416748047
+        },
+        {
+          "name": "confidenceBandWidth",
+          "split": "valid",
+          "gold": "ok",
+          "change": "extract-result",
+          "bug_logprob": -0.9574813842773438,
+          "ok_logprob": -1.1909122467041016,
+          "margin": 0.2334308624267578
+        },
+        {
+          "name": "surveyWeight",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8392753601074219,
+          "ok_logprob": -1.4164562225341797,
+          "margin": 0.5771808624267578
+        },
+        {
+          "name": "surveyWeight",
+          "split": "valid",
+          "gold": "ok",
+          "change": "swap-min-max-arguments",
+          "bug_logprob": -0.8510780334472656,
+          "ok_logprob": -1.5219497680664062,
+          "margin": 0.6708717346191406
+        },
+        {
+          "name": "isValidLikertScore",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -1.0382080078125,
+          "ok_logprob": -1.2717819213867188,
+          "margin": 0.23357391357421875
+        },
+        {
+          "name": "isValidLikertScore",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.8810253143310547,
+          "ok_logprob": -1.5674552917480469,
+          "margin": 0.6864299774169922
+        },
+        {
+          "name": "samplingInterval",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -1.283365249633789,
+          "ok_logprob": -1.0168895721435547,
+          "margin": -0.2664756774902344
+        },
+        {
+          "name": "samplingInterval",
+          "split": "valid",
+          "gold": "ok",
+          "change": "swap-min-max-arguments",
+          "bug_logprob": -0.8456878662109375,
+          "ok_logprob": -1.5633888244628906,
+          "margin": 0.7177009582519531
+        },
+        {
+          "name": "followUpCredits",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8146877288818359,
+          "ok_logprob": -1.6731128692626953,
+          "margin": 0.8584251403808594
+        },
+        {
+          "name": "followUpCredits",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.8922195434570312,
+          "ok_logprob": -1.4539222717285156,
+          "margin": 0.5617027282714844
+        },
+        {
+          "name": "weightedQuestionPoints",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.7019367218017578,
+          "ok_logprob": -1.904287338256836,
+          "margin": 1.2023506164550781
+        },
+        {
+          "name": "weightedQuestionPoints",
+          "split": "valid",
+          "gold": "ok",
+          "change": "rename-parameter",
+          "bug_logprob": -0.8554515838623047,
+          "ok_logprob": -1.4014949798583984,
+          "margin": 0.5460433959960938
+        },
+        {
+          "name": "reverbDelayMilliseconds",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.9533309936523438,
+          "ok_logprob": -1.4989509582519531,
+          "margin": 0.5456199645996094
+        },
+        {
+          "name": "reverbDelayMilliseconds",
+          "split": "valid",
+          "gold": "ok",
+          "change": "extract-result",
+          "bug_logprob": -1.0950660705566406,
+          "ok_logprob": -1.1408672332763672,
+          "margin": 0.04580116271972656
+        },
+        {
+          "name": "soundPressureDb",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.9255638122558594,
+          "ok_logprob": -1.40863037109375,
+          "margin": 0.4830665588378906
+        },
+        {
+          "name": "soundPressureDb",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.7506866455078125,
+          "ok_logprob": -1.6872386932373047,
+          "margin": 0.9365520477294922
+        },
+        {
+          "name": "octaveStep",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.9052162170410156,
+          "ok_logprob": -1.5758247375488281,
+          "margin": 0.6706085205078125
+        },
+        {
+          "name": "octaveStep",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.7729110717773438,
+          "ok_logprob": -1.7406253814697266,
+          "margin": 0.9677143096923828
+        },
+        {
+          "name": "echoCount",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -1.007965087890625,
+          "ok_logprob": -1.4288387298583984,
+          "margin": 0.42087364196777344
+        },
+        {
+          "name": "echoCount",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.7837886810302734,
+          "ok_logprob": -1.6263999938964844,
+          "margin": 0.8426113128662109
+        },
+        {
+          "name": "isClipping",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8965206146240234,
+          "ok_logprob": -1.7394561767578125,
+          "margin": 0.8429355621337891
+        },
+        {
+          "name": "isClipping",
+          "split": "valid",
+          "gold": "ok",
+          "change": "extract-result",
+          "bug_logprob": -0.8281421661376953,
+          "ok_logprob": -1.5773544311523438,
+          "margin": 0.7492122650146484
+        },
+        {
+          "name": "remainingCalibrationSeconds",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.6481380462646484,
+          "ok_logprob": -1.8504829406738281,
+          "margin": 1.2023448944091797
+        },
+        {
+          "name": "remainingCalibrationSeconds",
+          "split": "valid",
+          "gold": "ok",
+          "change": "swap-min-max-arguments",
+          "bug_logprob": -0.8792915344238281,
+          "ok_logprob": -1.3784427642822266,
+          "margin": 0.49915122985839844
+        },
+        {
+          "name": "dryDiameterMm",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.7722644805908203,
+          "ok_logprob": -1.7558670043945312,
+          "margin": 0.9836025238037109
+        },
+        {
+          "name": "dryDiameterMm",
+          "split": "valid",
+          "gold": "ok",
+          "change": "extract-result",
+          "bug_logprob": -1.0244293212890625,
+          "ok_logprob": -1.257772445678711,
+          "margin": 0.23334312438964844
+        },
+        {
+          "name": "glazeMixGrams",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8482074737548828,
+          "ok_logprob": -1.50360107421875,
+          "margin": 0.6553936004638672
+        },
+        {
+          "name": "glazeMixGrams",
+          "split": "valid",
+          "gold": "ok",
+          "change": "rename-parameter",
+          "bug_logprob": -0.8207950592041016,
+          "ok_logprob": -1.616586685180664,
+          "margin": 0.7957916259765625
+        },
+        {
+          "name": "bisqueRampMinutes",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8182106018066406,
+          "ok_logprob": -1.4886817932128906,
+          "margin": 0.67047119140625
+        },
+        {
+          "name": "bisqueRampMinutes",
+          "split": "valid",
+          "gold": "ok",
+          "change": "extract-result",
+          "bug_logprob": -1.0228633880615234,
+          "ok_logprob": -1.2248497009277344,
+          "margin": 0.20198631286621094
+        },
+        {
+          "name": "needsSecondCoat",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8850059509277344,
+          "ok_logprob": -1.6654300689697266,
+          "margin": 0.7804241180419922
+        },
+        {
+          "name": "needsSecondCoat",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.8490447998046875,
+          "ok_logprob": -1.817056655883789,
+          "margin": 0.9680118560791016
+        },
+        {
+          "name": "firingBatchLabel",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8522872924804688,
+          "ok_logprob": -1.8512001037597656,
+          "margin": 0.9989128112792969
+        },
+        {
+          "name": "firingBatchLabel",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.9074287414550781,
+          "ok_logprob": -1.5002288818359375,
+          "margin": 0.5928001403808594
+        },
+        {
+          "name": "clayReclaimYield",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.7500057220458984,
+          "ok_logprob": -1.6553382873535156,
+          "margin": 0.9053325653076172
+        },
+        {
+          "name": "clayReclaimYield",
+          "split": "valid",
+          "gold": "ok",
+          "change": "rename-parameter",
+          "bug_logprob": -1.0965385437011719,
+          "ok_logprob": -1.1424140930175781,
+          "margin": 0.04587554931640625
+        },
+        {
+          "name": "depthUnderKeel",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8325099945068359,
+          "ok_logprob": -1.5194339752197266,
+          "margin": 0.6869239807128906
+        },
+        {
+          "name": "depthUnderKeel",
+          "split": "valid",
+          "gold": "ok",
+          "change": "extract-result",
+          "bug_logprob": -0.9844760894775391,
+          "ok_logprob": -1.1866950988769531,
+          "margin": 0.20221900939941406
+        },
+        {
+          "name": "distanceForLegNm",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.9516315460205078,
+          "ok_logprob": -1.3882827758789062,
+          "margin": 0.43665122985839844
+        },
+        {
+          "name": "distanceForLegNm",
+          "split": "valid",
+          "gold": "ok",
+          "change": "rename-parameter",
+          "bug_logprob": -1.0310020446777344,
+          "ok_logprob": -1.248647689819336,
+          "margin": 0.21764564514160156
+        },
+        {
+          "name": "remainingAnchorScopeMeters",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.89495849609375,
+          "ok_logprob": -1.3940696716308594,
+          "margin": 0.4991111755371094
+        },
+        {
+          "name": "remainingAnchorScopeMeters",
+          "split": "valid",
+          "gold": "ok",
+          "change": "swap-min-max-arguments",
+          "bug_logprob": -0.7154827117919922,
+          "ok_logprob": -1.7460556030273438,
+          "margin": 1.0305728912353516
+        },
+        {
+          "name": "tideQuarterIndex",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.7495784759521484,
+          "ok_logprob": -1.6547698974609375,
+          "margin": 0.9051914215087891
+        },
+        {
+          "name": "tideQuarterIndex",
+          "split": "valid",
+          "gold": "ok",
+          "change": "rename-parameter",
+          "bug_logprob": -0.8134613037109375,
+          "ok_logprob": -1.6405525207519531,
+          "margin": 0.8270912170410156
+        },
+        {
+          "name": "isOnPortSide",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.7599124908447266,
+          "ok_logprob": -1.727945327758789,
+          "margin": 0.9680328369140625
+        },
+        {
+          "name": "isOnPortSide",
+          "split": "valid",
+          "gold": "ok",
+          "change": "flip-comparison",
+          "bug_logprob": -0.7977352142333984,
+          "ok_logprob": -1.9845561981201172,
+          "margin": 1.1868209838867188
+        },
+        {
+          "name": "watchRotationCrew",
+          "split": "valid",
+          "gold": "bug",
+          "change": "revert-fix",
+          "bug_logprob": -0.8267631530761719,
+          "ok_logprob": -1.5603351593017578,
+          "margin": 0.7335720062255859
+        },
+        {
+          "name": "watchRotationCrew",
+          "split": "valid",
+          "gold": "ok",
+          "change": "rename-parameter",
+          "bug_logprob": -0.9221477508544922,
+          "ok_logprob": -1.2806625366210938,
+          "margin": 0.35851478576660156
+        }
+      ],
+      "median_review_seconds": 0.4234403125001336,
+      "model_load_seconds": 2.8307693329998074,
+      "peak_mlx_bytes": 1398353132
+    },
+    "checkpoints": {
+      "60": {
+        "rows": [
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.8760623931884766,
+            "ok_logprob": -0.6104087829589844,
+            "margin": -0.2656536102294922
+          },
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -1.5648479461669922,
+            "ok_logprob": -0.2835350036621094,
+            "margin": -1.2813129425048828
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1371192932128906,
+            "ok_logprob": -0.4495563507080078,
+            "margin": -0.6875629425048828
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -1.1658496856689453,
+            "ok_logprob": -0.43141746520996094,
+            "margin": -0.7344322204589844
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.4416465759277344,
+            "ok_logprob": -0.31659889221191406,
+            "margin": -1.1250476837158203
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.1539802551269531,
+            "ok_logprob": -0.4351673126220703,
+            "margin": -0.7188129425048828
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.6112003326416016,
+            "ok_logprob": -0.26737403869628906,
+            "margin": -1.3438262939453125
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -1.1656627655029297,
+            "ok_logprob": -0.4312095642089844,
+            "margin": -0.7344532012939453
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.176137924194336,
+            "ok_logprob": -0.4260997772216797,
+            "margin": -0.7500381469726562
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.200155258178711,
+            "ok_logprob": -0.4188556671142578,
+            "margin": -0.7812995910644531
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.7734909057617188,
+            "ok_logprob": -0.6953258514404297,
+            "margin": -0.07816505432128906
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -1.1885337829589844,
+            "ok_logprob": -0.42283058166503906,
+            "margin": -0.7657032012939453
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.336904525756836,
+            "ok_logprob": -0.35244178771972656,
+            "margin": -0.9844627380371094
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -1.8354969024658203,
+            "ok_logprob": -0.2103748321533203,
+            "margin": -1.6251220703125
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.3941822052001953,
+            "ok_logprob": -0.33162498474121094,
+            "margin": -1.0625572204589844
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.134500503540039,
+            "ok_logprob": -0.44695472717285156,
+            "margin": -0.6875457763671875
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1652889251708984,
+            "ok_logprob": -0.4308452606201172,
+            "margin": -0.7344436645507812
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.0235443115234375,
+            "ok_logprob": -0.5078353881835938,
+            "margin": -0.5157089233398438
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.3842353820800781,
+            "ok_logprob": -0.3372802734375,
+            "margin": -1.0469551086425781
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.1220741271972656,
+            "ok_logprob": -0.45013427734375,
+            "margin": -0.6719398498535156
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0225944519042969,
+            "ok_logprob": -0.506927490234375,
+            "margin": -0.5156669616699219
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -1.2408180236816406,
+            "ok_logprob": -0.39703369140625,
+            "margin": -0.8437843322753906
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.7370452880859375,
+            "ok_logprob": -0.7213897705078125,
+            "margin": -0.015655517578125
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -1.1786231994628906,
+            "ok_logprob": -0.42856788635253906,
+            "margin": -0.7500553131103516
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.9099712371826172,
+            "ok_logprob": -0.5818138122558594,
+            "margin": -0.3281574249267578
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -1.5038890838623047,
+            "ok_logprob": -0.300689697265625,
+            "margin": -1.2031993865966797
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.142721176147461,
+            "ok_logprob": -0.43953895568847656,
+            "margin": -0.7031822204589844
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -1.1248340606689453,
+            "ok_logprob": -0.45287513732910156,
+            "margin": -0.6719589233398438
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.2140083312988281,
+            "ok_logprob": -0.4014167785644531,
+            "margin": -0.812591552734375
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -1.7716426849365234,
+            "ok_logprob": -0.22466087341308594,
+            "margin": -1.5469818115234375
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0809650421142578,
+            "ok_logprob": -0.4715290069580078,
+            "margin": -0.60943603515625
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.9457817077636719,
+            "ok_logprob": -0.5551090240478516,
+            "margin": -0.3906726837158203
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0836219787597656,
+            "ok_logprob": -0.4742012023925781,
+            "margin": -0.6094207763671875
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.3949050903320312,
+            "ok_logprob": -0.33234596252441406,
+            "margin": -1.0625591278076172
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0038032531738281,
+            "ok_logprob": -0.5193862915039062,
+            "margin": -0.4844169616699219
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -1.6438579559326172,
+            "ok_logprob": -0.2531166076660156,
+            "margin": -1.3907413482666016
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.131195068359375,
+            "ok_logprob": -0.44365882873535156,
+            "margin": -0.6875362396240234
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -1.563894271850586,
+            "ok_logprob": -0.28258705139160156,
+            "margin": -1.2813072204589844
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.2436351776123047,
+            "ok_logprob": -0.39983177185058594,
+            "margin": -0.8438034057617188
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -1.4768428802490234,
+            "ok_logprob": -0.3048572540283203,
+            "margin": -1.1719856262207031
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.2385673522949219,
+            "ok_logprob": -0.3947582244873047,
+            "margin": -0.8438091278076172
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.8570289611816406,
+            "ok_logprob": -0.6226100921630859,
+            "margin": -0.2344188690185547
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.9840831756591797,
+            "ok_logprob": -0.5309066772460938,
+            "margin": -0.45317649841308594
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -1.112447738647461,
+            "ok_logprob": -0.4561004638671875,
+            "margin": -0.6563472747802734
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.9119205474853516,
+            "ok_logprob": -0.5837726593017578,
+            "margin": -0.32814788818359375
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.8119297027587891,
+            "ok_logprob": -0.6556377410888672,
+            "margin": -0.15629196166992188
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1512718200683594,
+            "ok_logprob": -0.43248748779296875,
+            "margin": -0.7187843322753906
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -1.316427230834961,
+            "ok_logprob": -0.36322975158691406,
+            "margin": -0.9531974792480469
+          }
+        ],
+        "median_review_seconds": 0.41097177100027693,
+        "model_load_seconds": 0.911176040999635,
+        "peak_mlx_bytes": 1406059964
+      },
+      "120": {
+        "rows": [
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1052093505859375,
+            "ok_logprob": -0.41771697998046875,
+            "margin": -0.6874923706054688
+          },
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -8.6773681640625,
+            "ok_logprob": -0.00545501708984375,
+            "margin": -8.671913146972656
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -2.5434818267822266,
+            "ok_logprob": -0.09035301208496094,
+            "margin": -2.4531288146972656
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -2.528810501098633,
+            "ok_logprob": -0.09130477905273438,
+            "margin": -2.4375057220458984
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.800048828125,
+            "ok_logprob": -0.19067955017089844,
+            "margin": -1.6093692779541016
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.392110824584961,
+            "ok_logprob": -0.29834747314453125,
+            "margin": -1.0937633514404297
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -3.1888580322265625,
+            "ok_logprob": -0.04823493957519531,
+            "margin": -3.140623092651367
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -2.217906951904297,
+            "ok_logprob": -0.12415504455566406,
+            "margin": -2.093751907348633
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.3113765716552734,
+            "ok_logprob": -0.3269977569580078,
+            "margin": -0.9843788146972656
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.522878646850586,
+            "ok_logprob": -0.25725364685058594,
+            "margin": -1.265625
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.8799686431884766,
+            "ok_logprob": -0.17684173583984375,
+            "margin": -1.7031269073486328
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -4.208255767822266,
+            "ok_logprob": -0.020709991455078125,
+            "margin": -4.1875457763671875
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.7858638763427734,
+            "ok_logprob": -0.19209861755371094,
+            "margin": -1.5937652587890625
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -9.15308952331543,
+            "ok_logprob": -0.004596710205078125,
+            "margin": -9.148492813110352
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.7870311737060547,
+            "ok_logprob": -0.19326019287109375,
+            "margin": -1.593770980834961
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.3575115203857422,
+            "ok_logprob": -0.3106231689453125,
+            "margin": -1.0468883514404297
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.22125244140625,
+            "ok_logprob": -0.36185264587402344,
+            "margin": -0.8593997955322266
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.177927017211914,
+            "ok_logprob": -0.38104248046875,
+            "margin": -0.7968845367431641
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.931070327758789,
+            "ok_logprob": -0.16544723510742188,
+            "margin": -1.7656230926513672
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.5594120025634766,
+            "ok_logprob": -0.24691200256347656,
+            "margin": -1.3125
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -2.2329254150390625,
+            "ok_logprob": -0.12354469299316406,
+            "margin": -2.1093807220458984
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -8.19291877746582,
+            "ok_logprob": -0.005382537841796875,
+            "margin": -8.187536239624023
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0822429656982422,
+            "ok_logprob": -0.42600440979003906,
+            "margin": -0.6562385559082031
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -1.8931083679199219,
+            "ok_logprob": -0.1743602752685547,
+            "margin": -1.7187480926513672
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.5243587493896484,
+            "ok_logprob": -0.2587432861328125,
+            "margin": -1.265615463256836
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -8.747200012207031,
+            "ok_logprob": -0.0049915313720703125,
+            "margin": -8.742208480834961
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.2655467987060547,
+            "ok_logprob": -0.3436450958251953,
+            "margin": -0.9219017028808594
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -3.872304916381836,
+            "ok_logprob": -0.028472900390625,
+            "margin": -3.843832015991211
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.6207847595214844,
+            "ok_logprob": -0.2301464080810547,
+            "margin": -1.3906383514404297
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -9.03602409362793,
+            "ok_logprob": -0.0047206878662109375,
+            "margin": -9.031303405761719
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.9638996124267578,
+            "ok_logprob": -0.49513816833496094,
+            "margin": -0.4687614440917969
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.8088111877441406,
+            "ok_logprob": -0.6056880950927734,
+            "margin": -0.2031230926513672
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.4048728942871094,
+            "ok_logprob": -0.29550743103027344,
+            "margin": -1.109365463256836
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.8797264099121094,
+            "ok_logprob": -0.176605224609375,
+            "margin": -1.7031211853027344
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0524730682373047,
+            "ok_logprob": -0.44309425354003906,
+            "margin": -0.6093788146972656
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -5.011739730834961,
+            "ok_logprob": -0.011676788330078125,
+            "margin": -5.000062942504883
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.2883377075195312,
+            "ok_logprob": -0.33522796630859375,
+            "margin": -0.9531097412109375
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -8.895380020141602,
+            "ok_logprob": -0.0047588348388671875,
+            "margin": -8.890621185302734
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.43914794921875,
+            "ok_logprob": -0.28290367126464844,
+            "margin": -1.1562442779541016
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -4.934532165527344,
+            "ok_logprob": -0.012569427490234375,
+            "margin": -4.921962738037109
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.6963024139404297,
+            "ok_logprob": -0.21193504333496094,
+            "margin": -1.4843673706054688
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -1.114145278930664,
+            "ok_logprob": -0.4110279083251953,
+            "margin": -0.7031173706054688
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1782760620117188,
+            "ok_logprob": -0.3813915252685547,
+            "margin": -0.7968845367431641
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -4.024394989013672,
+            "ok_logprob": -0.024316787719726562,
+            "margin": -4.000078201293945
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1265735626220703,
+            "ok_logprob": -0.40784263610839844,
+            "margin": -0.7187309265136719
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.9942283630371094,
+            "ok_logprob": -0.4786033630371094,
+            "margin": -0.515625
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.3807525634765625,
+            "ok_logprob": -0.3026275634765625,
+            "margin": -1.078125
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -4.547281265258789,
+            "ok_logprob": -0.01598358154296875,
+            "margin": -4.53129768371582
+          }
+        ],
+        "median_review_seconds": 0.4447363540002698,
+        "model_load_seconds": 0.7854052920001777,
+        "peak_mlx_bytes": 1406059964
+      },
+      "180": {
+        "rows": [
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.8350391387939453,
+            "ok_logprob": -0.6318321228027344,
+            "margin": -0.20320701599121094
+          },
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -18.23760414123535,
+            "ok_logprob": -0.003307342529296875,
+            "margin": -18.234296798706055
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.6577205657958984,
+            "ok_logprob": -0.8138828277587891,
+            "margin": 0.15616226196289062
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.6806716918945312,
+            "ok_logprob": -0.7899570465087891,
+            "margin": 0.10928535461425781
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.6157112121582031,
+            "ok_logprob": -0.8500041961669922,
+            "margin": 0.23429298400878906
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.45172882080078125,
+            "ok_logprob": -1.107889175415039,
+            "margin": 0.6561603546142578
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1688232421875,
+            "ok_logprob": -0.41871070861816406,
+            "margin": -0.7501125335693359
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.7052974700927734,
+            "ok_logprob": -0.7520675659179688,
+            "margin": 0.04677009582519531
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.257833480834961,
+            "ok_logprob": -0.38276100158691406,
+            "margin": -0.8750724792480469
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.38922119140625,
+            "ok_logprob": -0.3266735076904297,
+            "margin": -1.0625476837158203
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.9421463012695312,
+            "ok_logprob": -0.5514583587646484,
+            "margin": -0.3906879425048828
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -5.48382568359375,
+            "ok_logprob": -0.014965057373046875,
+            "margin": -5.468860626220703
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.3249378204345703,
+            "ok_logprob": -0.3404712677001953,
+            "margin": -0.984466552734375
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -16.40966796875,
+            "ok_logprob": -0.00351715087890625,
+            "margin": -16.406150817871094
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.3411121368408203,
+            "ok_logprob": -0.3410072326660156,
+            "margin": -1.0001049041748047
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.084756851196289,
+            "ok_logprob": -0.4596748352050781,
+            "margin": -0.6250820159912109
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1023635864257812,
+            "ok_logprob": -0.44602012634277344,
+            "margin": -0.6563434600830078
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.0019092559814453,
+            "ok_logprob": -0.5018234252929688,
+            "margin": -0.5000858306884766
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.2836227416992188,
+            "ok_logprob": -0.361663818359375,
+            "margin": -0.9219589233398438
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.0296382904052734,
+            "ok_logprob": -0.4826793670654297,
+            "margin": -0.5469589233398438
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.8947181701660156,
+            "ok_logprob": -0.19153976440429688,
+            "margin": -1.7031784057617188
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -18.659753799438477,
+            "ok_logprob": -0.0036182403564453125,
+            "margin": -18.65613555908203
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.9403133392333984,
+            "ok_logprob": -0.5340099334716797,
+            "margin": -0.40630340576171875
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -1.6729545593261719,
+            "ok_logprob": -0.23538970947265625,
+            "margin": -1.4375648498535156
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.018056869506836,
+            "ok_logprob": -0.4867420196533203,
+            "margin": -0.5313148498535156
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -18.83190155029297,
+            "ok_logprob": -0.0038852691650390625,
+            "margin": -18.82801628112793
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.8347797393798828,
+            "ok_logprob": -0.615966796875,
+            "margin": -0.2188129425048828
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -6.013547897338867,
+            "ok_logprob": -0.013383865356445312,
+            "margin": -6.000164031982422
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.5815181732177734,
+            "ok_logprob": -0.26891517639160156,
+            "margin": -1.3126029968261719
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -16.332021713256836,
+            "ok_logprob": -0.0040111541748046875,
+            "margin": -16.32801055908203
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.7307300567626953,
+            "ok_logprob": -0.7150421142578125,
+            "margin": -0.015687942504882812
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.648040771484375,
+            "ok_logprob": -0.8042392730712891,
+            "margin": 0.15619850158691406
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.0348587036132812,
+            "ok_logprob": -0.4879131317138672,
+            "margin": -0.5469455718994141
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -1.3309860229492188,
+            "ok_logprob": -0.3465423583984375,
+            "margin": -0.9844436645507812
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.176605224609375,
+            "ok_logprob": -0.41090965270996094,
+            "margin": -0.7656955718994141
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -5.879154205322266,
+            "ok_logprob": -0.011842727661132812,
+            "margin": -5.867311477661133
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.46152496337890625,
+            "ok_logprob": -1.0708274841308594,
+            "margin": 0.6093025207519531
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -20.359132766723633,
+            "ok_logprob": -0.0038299560546875,
+            "margin": -20.355302810668945
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.1817607879638672,
+            "ok_logprob": -0.4160785675048828,
+            "margin": -0.7656822204589844
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -6.089628219604492,
+            "ok_logprob": -0.011325836181640625,
+            "margin": -6.078302383422852
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -1.4140682220458984,
+            "ok_logprob": -0.30462646484375,
+            "margin": -1.1094417572021484
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.8837108612060547,
+            "ok_logprob": -0.5711498260498047,
+            "margin": -0.31256103515625
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.8510627746582031,
+            "ok_logprob": -0.6166210174560547,
+            "margin": -0.23444175720214844
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -5.989580154418945,
+            "ok_logprob": -0.012859344482421875,
+            "margin": -5.976720809936523
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.8192310333251953,
+            "ok_logprob": -0.6472873687744141,
+            "margin": -0.17194366455078125
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.6459178924560547,
+            "ok_logprob": -0.8177337646484375,
+            "margin": 0.1718158721923828
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.6181373596191406,
+            "ok_logprob": -0.8368148803710938,
+            "margin": 0.21867752075195312
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -6.62822151184082,
+            "ok_logprob": -0.01090240478515625,
+            "margin": -6.617319107055664
+          }
+        ],
+        "median_review_seconds": 0.42694447949997993,
+        "model_load_seconds": 2.50270833400009,
+        "peak_mlx_bytes": 1394367508
+      },
+      "240": {
+        "rows": [
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.22992706298828125,
+            "ok_logprob": -2.0498790740966797,
+            "margin": 1.8199520111083984
+          },
+          {
+            "name": "confidenceBandWidth",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -7.34312629699707,
+            "ok_logprob": -0.0066852569580078125,
+            "margin": -7.3364410400390625
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.1789999008178711,
+            "ok_logprob": -2.491183280944824,
+            "margin": 2.312183380126953
+          },
+          {
+            "name": "surveyWeight",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.1938800811767578,
+            "ok_logprob": -2.4044551849365234,
+            "margin": 2.2105751037597656
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.1461935043334961,
+            "ok_logprob": -2.6927175521850586,
+            "margin": 2.5465240478515625
+          },
+          {
+            "name": "isValidLikertScore",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.14652156829833984,
+            "ok_logprob": -2.7008981704711914,
+            "margin": 2.5543766021728516
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.14281082153320312,
+            "ok_logprob": -2.642324447631836,
+            "margin": 2.499513626098633
+          },
+          {
+            "name": "samplingInterval",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.11462974548339844,
+            "ok_logprob": -2.989206314086914,
+            "margin": 2.8745765686035156
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.24723148345947266,
+            "ok_logprob": -2.090449333190918,
+            "margin": 1.8432178497314453
+          },
+          {
+            "name": "followUpCredits",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.2385540008544922,
+            "ok_logprob": -1.98040771484375,
+            "margin": 1.7418537139892578
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.1550912857055664,
+            "ok_logprob": -2.6076955795288086,
+            "margin": 2.452604293823242
+          },
+          {
+            "name": "weightedQuestionPoints",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -11.277059555053711,
+            "ok_logprob": -0.0034313201904296875,
+            "margin": -11.273628234863281
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.21225738525390625,
+            "ok_logprob": -2.07891845703125,
+            "margin": 1.8666610717773438
+          },
+          {
+            "name": "reverbDelayMilliseconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -5.319225311279297,
+            "ok_logprob": -0.013666152954101562,
+            "margin": -5.305559158325195
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.27302074432373047,
+            "ok_logprob": -1.819340705871582,
+            "margin": 1.5463199615478516
+          },
+          {
+            "name": "soundPressureDb",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.22544479370117188,
+            "ok_logprob": -1.9673042297363281,
+            "margin": 1.7418594360351562
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.29108142852783203,
+            "ok_logprob": -1.798384666442871,
+            "margin": 1.507303237915039
+          },
+          {
+            "name": "octaveStep",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.38200950622558594,
+            "ok_logprob": -1.4128761291503906,
+            "margin": 1.0308666229248047
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.17966938018798828,
+            "ok_logprob": -2.3430871963500977,
+            "margin": 2.1634178161621094
+          },
+          {
+            "name": "echoCount",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.14583301544189453,
+            "ok_logprob": -2.6372594833374023,
+            "margin": 2.491426467895508
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.18478870391845703,
+            "ok_logprob": -2.3483877182006836,
+            "margin": 2.1635990142822266
+          },
+          {
+            "name": "isClipping",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -6.921426773071289,
+            "ok_logprob": -0.0069828033447265625,
+            "margin": -6.9144439697265625
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.10892677307128906,
+            "ok_logprob": -3.038301467895508,
+            "margin": 2.9293746948242188
+          },
+          {
+            "name": "remainingCalibrationSeconds",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.15651226043701172,
+            "ok_logprob": -2.554499626159668,
+            "margin": 2.3979873657226562
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.12933921813964844,
+            "ok_logprob": -2.745992660522461,
+            "margin": 2.6166534423828125
+          },
+          {
+            "name": "dryDiameterMm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -7.655220031738281,
+            "ok_logprob": -0.0063152313232421875,
+            "margin": -7.648904800415039
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.20343685150146484,
+            "ok_logprob": -2.335556983947754,
+            "margin": 2.132120132446289
+          },
+          {
+            "name": "glazeMixGrams",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -13.596685409545898,
+            "ok_logprob": -0.0027408599853515625,
+            "margin": -13.593944549560547
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.18164920806884766,
+            "ok_logprob": -2.3763856887817383,
+            "margin": 2.1947364807128906
+          },
+          {
+            "name": "bisqueRampMinutes",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -4.854286193847656,
+            "ok_logprob": -0.017541885375976562,
+            "margin": -4.83674430847168
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.16324901580810547,
+            "ok_logprob": -2.6159658432006836,
+            "margin": 2.452716827392578
+          },
+          {
+            "name": "needsSecondCoat",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.26755237579345703,
+            "ok_logprob": -1.9547510147094727,
+            "margin": 1.6871986389160156
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.26058101654052734,
+            "ok_logprob": -1.9243459701538086,
+            "margin": 1.6637649536132812
+          },
+          {
+            "name": "firingBatchLabel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.3683347702026367,
+            "ok_logprob": -1.5164480209350586,
+            "margin": 1.1481132507324219
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.10703086853027344,
+            "ok_logprob": -3.0596961975097656,
+            "margin": 2.952665328979492
+          },
+          {
+            "name": "clayReclaimYield",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -11.581644058227539,
+            "ok_logprob": -0.003269195556640625,
+            "margin": -11.578374862670898
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.09006500244140625,
+            "ok_logprob": -3.3707504272460938,
+            "margin": 3.2806854248046875
+          },
+          {
+            "name": "depthUnderKeel",
+            "split": "valid",
+            "gold": "ok",
+            "change": "extract-result",
+            "bug_logprob": -7.998334884643555,
+            "ok_logprob": -0.0056858062744140625,
+            "margin": -7.992649078369141
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.2220144271850586,
+            "ok_logprob": -2.2762556076049805,
+            "margin": 2.054241180419922
+          },
+          {
+            "name": "distanceForLegNm",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -12.034711837768555,
+            "ok_logprob": -0.0031642913818359375,
+            "margin": -12.031547546386719
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.1694316864013672,
+            "ok_logprob": -2.2706241607666016,
+            "margin": 2.1011924743652344
+          },
+          {
+            "name": "remainingAnchorScopeMeters",
+            "split": "valid",
+            "gold": "ok",
+            "change": "swap-min-max-arguments",
+            "bug_logprob": -0.12699317932128906,
+            "ok_logprob": -2.6657543182373047,
+            "margin": 2.5387611389160156
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.14449787139892578,
+            "ok_logprob": -2.9408788681030273,
+            "margin": 2.7963809967041016
+          },
+          {
+            "name": "tideQuarterIndex",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -13.643606185913086,
+            "ok_logprob": -0.0027751922607421875,
+            "margin": -13.640830993652344
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.12051963806152344,
+            "ok_logprob": -3.0732479095458984,
+            "margin": 2.952728271484375
+          },
+          {
+            "name": "isOnPortSide",
+            "split": "valid",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.09922122955322266,
+            "ok_logprob": -3.325345039367676,
+            "margin": 3.226123809814453
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "bug",
+            "change": "revert-fix",
+            "bug_logprob": -0.1188058853149414,
+            "ok_logprob": -2.962031364440918,
+            "margin": 2.8432254791259766
+          },
+          {
+            "name": "watchRotationCrew",
+            "split": "valid",
+            "gold": "ok",
+            "change": "rename-parameter",
+            "bug_logprob": -13.206289291381836,
+            "ok_logprob": -0.0029811859130859375,
+            "margin": -13.20330810546875
+          }
+        ],
+        "median_review_seconds": 0.42322677050015045,
+        "model_load_seconds": 1.0465809170000284,
+        "peak_mlx_bytes": 1406059964
+      }
+    },
+    "summary": {
+      "base": {
+        "bug_prs": 24,
+        "flagged_bug_prs": 23,
+        "refactor_prs": 24,
+        "flagged_refactor_prs": 24,
+        "balanced_accuracy": "23/48"
+      },
+      "base_calibrated": {
+        "bug_prs": 24,
+        "flagged_bug_prs": 23,
+        "refactor_prs": 24,
+        "flagged_refactor_prs": 17,
+        "balanced_accuracy": "5/8"
+      },
+      "step_60": {
+        "bug_prs": 24,
+        "flagged_bug_prs": 0,
+        "refactor_prs": 24,
+        "flagged_refactor_prs": 0,
+        "balanced_accuracy": "1/2"
+      },
+      "step_120": {
+        "bug_prs": 24,
+        "flagged_bug_prs": 0,
+        "refactor_prs": 24,
+        "flagged_refactor_prs": 0,
+        "balanced_accuracy": "1/2"
+      },
+      "step_180": {
+        "bug_prs": 24,
+        "flagged_bug_prs": 4,
+        "refactor_prs": 24,
+        "flagged_refactor_prs": 5,
+        "balanced_accuracy": "23/48"
+      },
+      "step_240": {
+        "bug_prs": 24,
+        "flagged_bug_prs": 24,
+        "refactor_prs": 24,
+        "flagged_refactor_prs": 12,
+        "balanced_accuracy": "3/4"
+      }
+    }
+  },
+  "test": {
+    "reviewers": {
+      "base": {
+        "rows": [
+          {
+            "name": "interchangeFeeCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "round-to-floor",
+            "bug_logprob": -0.8747959136962891,
+            "ok_logprob": -1.4364662170410156,
+            "margin": 0.5616703033447266
+          },
+          {
+            "name": "authorizationFeeCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-zero-guard",
+            "bug_logprob": -1.090494155883789,
+            "ok_logprob": -1.3082695007324219,
+            "margin": 0.2177753448486328
+          },
+          {
+            "name": "meetsMinimumCharge",
+            "split": "test",
+            "gold": "bug",
+            "change": "inclusive-to-exclusive",
+            "bug_logprob": -0.8941783905029297,
+            "ok_logprob": -1.4402790069580078,
+            "margin": 0.5461006164550781
+          },
+          {
+            "name": "refundableFeeCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "ternary-to-if",
+            "bug_logprob": -0.8650989532470703,
+            "ok_logprob": -1.5513668060302734,
+            "margin": 0.6862678527832031
+          },
+          {
+            "name": "processingFeeCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "named-constants",
+            "bug_logprob": -0.9196376800537109,
+            "ok_logprob": -1.5437545776367188,
+            "margin": 0.6241168975830078
+          },
+          {
+            "name": "isMicroPayment",
+            "split": "test",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.7840061187744141,
+            "ok_logprob": -1.7363548278808594,
+            "margin": 0.9523487091064453
+          },
+          {
+            "name": "vatCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "fractional-cents",
+            "bug_logprob": -0.8924942016601562,
+            "ok_logprob": -1.422903060913086,
+            "margin": 0.5304088592529297
+          },
+          {
+            "name": "isSmallInvoice",
+            "split": "test",
+            "gold": "bug",
+            "change": "off-by-one-limit",
+            "bug_logprob": -0.8850936889648438,
+            "ok_logprob": -1.6031436920166016,
+            "margin": 0.7180500030517578
+          },
+          {
+            "name": "creditNoteVatCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-sign",
+            "bug_logprob": -1.1185455322265625,
+            "ok_logprob": -1.1800975799560547,
+            "margin": 0.06155204772949219
+          },
+          {
+            "name": "invoiceTotalCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "extract-variable",
+            "bug_logprob": -0.8205337524414062,
+            "ok_logprob": -1.647500991821289,
+            "margin": 0.8269672393798828
+          },
+          {
+            "name": "vatBandIndex",
+            "split": "test",
+            "gold": "ok",
+            "change": "guards-to-ternary",
+            "bug_logprob": -0.9613895416259766,
+            "ok_logprob": -1.5229530334472656,
+            "margin": 0.5615634918212891
+          },
+          {
+            "name": "invoiceLineCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "swap-max-arguments",
+            "bug_logprob": -0.9295520782470703,
+            "ok_logprob": -1.334890365600586,
+            "margin": 0.4053382873535156
+          },
+          {
+            "name": "monthlyInterestCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-monthly-division",
+            "bug_logprob": -1.1507530212402344,
+            "ok_logprob": -1.2122879028320312,
+            "margin": 0.061534881591796875
+          },
+          {
+            "name": "lateFeeCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-cap",
+            "bug_logprob": -1.0679550170898438,
+            "ok_logprob": -1.3325881958007812,
+            "margin": 0.2646331787109375
+          },
+          {
+            "name": "remainingTermMonths",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-clamp",
+            "bug_logprob": -1.0939750671386719,
+            "ok_logprob": -1.2182235717773438,
+            "margin": 0.12424850463867188
+          },
+          {
+            "name": "balanceAfterPaymentCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "named-constant",
+            "bug_logprob": -0.9482135772705078,
+            "ok_logprob": -1.4628639221191406,
+            "margin": 0.5146503448486328
+          },
+          {
+            "name": "isInGracePeriod",
+            "split": "test",
+            "gold": "ok",
+            "change": "de-morgan",
+            "bug_logprob": -0.8589572906494141,
+            "ok_logprob": -1.467203140258789,
+            "margin": 0.608245849609375
+          },
+          {
+            "name": "arrearsCategory",
+            "split": "test",
+            "gold": "ok",
+            "change": "reordered-guards",
+            "bug_logprob": -0.6636772155761719,
+            "ok_logprob": -1.8035526275634766,
+            "margin": 1.1398754119873047
+          },
+          {
+            "name": "payoutAfterReserveCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "floor-to-round",
+            "bug_logprob": -1.0385379791259766,
+            "ok_logprob": -1.1938610076904297,
+            "margin": 0.15532302856445312
+          },
+          {
+            "name": "eurToUsdCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "inverted-rate",
+            "bug_logprob": -0.8150920867919922,
+            "ok_logprob": -1.6267623901367188,
+            "margin": 0.8116703033447266
+          },
+          {
+            "name": "canInstantPayout",
+            "split": "test",
+            "gold": "bug",
+            "change": "inclusive-to-exclusive-limit",
+            "bug_logprob": -0.8127536773681641,
+            "ok_logprob": -1.671152114868164,
+            "margin": 0.8583984375
+          },
+          {
+            "name": "settlementWeekday",
+            "split": "test",
+            "gold": "ok",
+            "change": "commuted-addition",
+            "bug_logprob": -0.8903846740722656,
+            "ok_logprob": -1.5146064758300781,
+            "margin": 0.6242218017578125
+          },
+          {
+            "name": "payoutFeeCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "folded-constant",
+            "bug_logprob": -0.78857421875,
+            "ok_logprob": -1.678445816040039,
+            "margin": 0.8898715972900391
+          },
+          {
+            "name": "isWeekendSettlement",
+            "split": "test",
+            "gold": "ok",
+            "change": "reordered-condition",
+            "bug_logprob": -0.8400096893310547,
+            "ok_logprob": -1.6046886444091797,
+            "margin": 0.764678955078125
+          }
+        ],
+        "median_review_seconds": 0.37344983349976246,
+        "model_load_seconds": 0.7228222080002524,
+        "peak_mlx_bytes": 1403448556
+      },
+      "tuned": {
+        "rows": [
+          {
+            "name": "interchangeFeeCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "round-to-floor",
+            "bug_logprob": -0.2685565948486328,
+            "ok_logprob": -1.7911396026611328,
+            "margin": 1.5225830078125
+          },
+          {
+            "name": "authorizationFeeCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-zero-guard",
+            "bug_logprob": -0.6146888732910156,
+            "ok_logprob": -0.9499282836914062,
+            "margin": 0.3352394104003906
+          },
+          {
+            "name": "meetsMinimumCharge",
+            "split": "test",
+            "gold": "bug",
+            "change": "inclusive-to-exclusive",
+            "bug_logprob": -0.42206573486328125,
+            "ok_logprob": -1.3349781036376953,
+            "margin": 0.9129123687744141
+          },
+          {
+            "name": "refundableFeeCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "ternary-to-if",
+            "bug_logprob": -0.5651626586914062,
+            "ok_logprob": -1.0331497192382812,
+            "margin": 0.467987060546875
+          },
+          {
+            "name": "processingFeeCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "named-constants",
+            "bug_logprob": -0.2826347351074219,
+            "ok_logprob": -1.9459705352783203,
+            "margin": 1.6633358001708984
+          },
+          {
+            "name": "isMicroPayment",
+            "split": "test",
+            "gold": "ok",
+            "change": "flip-comparison",
+            "bug_logprob": -0.2824535369873047,
+            "ok_logprob": -1.7038116455078125,
+            "margin": 1.4213581085205078
+          },
+          {
+            "name": "vatCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "fractional-cents",
+            "bug_logprob": -0.2539243698120117,
+            "ok_logprob": -1.9019250869750977,
+            "margin": 1.648000717163086
+          },
+          {
+            "name": "isSmallInvoice",
+            "split": "test",
+            "gold": "bug",
+            "change": "off-by-one-limit",
+            "bug_logprob": -0.1360769271850586,
+            "ok_logprob": -2.7450437545776367,
+            "margin": 2.608966827392578
+          },
+          {
+            "name": "creditNoteVatCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-sign",
+            "bug_logprob": -0.3179779052734375,
+            "ok_logprob": -1.5831775665283203,
+            "margin": 1.2651996612548828
+          },
+          {
+            "name": "invoiceTotalCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "extract-variable",
+            "bug_logprob": -0.2723712921142578,
+            "ok_logprob": -1.7408294677734375,
+            "margin": 1.4684581756591797
+          },
+          {
+            "name": "vatBandIndex",
+            "split": "test",
+            "gold": "ok",
+            "change": "guards-to-ternary",
+            "bug_logprob": -0.2020425796508789,
+            "ok_logprob": -2.17032527923584,
+            "margin": 1.968282699584961
+          },
+          {
+            "name": "invoiceLineCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "swap-max-arguments",
+            "bug_logprob": -0.15638351440429688,
+            "ok_logprob": -2.445009231567383,
+            "margin": 2.288625717163086
+          },
+          {
+            "name": "monthlyInterestCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-monthly-division",
+            "bug_logprob": -0.1771392822265625,
+            "ok_logprob": -2.3017444610595703,
+            "margin": 2.124605178833008
+          },
+          {
+            "name": "lateFeeCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-cap",
+            "bug_logprob": -0.20009231567382812,
+            "ok_logprob": -2.269906997680664,
+            "margin": 2.069814682006836
+          },
+          {
+            "name": "remainingTermMonths",
+            "split": "test",
+            "gold": "bug",
+            "change": "dropped-clamp",
+            "bug_logprob": -0.13070106506347656,
+            "ok_logprob": -2.7084274291992188,
+            "margin": 2.577726364135742
+          },
+          {
+            "name": "balanceAfterPaymentCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "named-constant",
+            "bug_logprob": -0.2729310989379883,
+            "ok_logprob": -1.8424901962280273,
+            "margin": 1.569559097290039
+          },
+          {
+            "name": "isInGracePeriod",
+            "split": "test",
+            "gold": "ok",
+            "change": "de-morgan",
+            "bug_logprob": -0.1631784439086914,
+            "ok_logprob": -2.584528923034668,
+            "margin": 2.4213504791259766
+          },
+          {
+            "name": "arrearsCategory",
+            "split": "test",
+            "gold": "ok",
+            "change": "reordered-guards",
+            "bug_logprob": -0.1391754150390625,
+            "ok_logprob": -2.60772705078125,
+            "margin": 2.4685516357421875
+          },
+          {
+            "name": "payoutAfterReserveCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "floor-to-round",
+            "bug_logprob": -0.20298385620117188,
+            "ok_logprob": -2.0382137298583984,
+            "margin": 1.8352298736572266
+          },
+          {
+            "name": "eurToUsdCents",
+            "split": "test",
+            "gold": "bug",
+            "change": "inverted-rate",
+            "bug_logprob": -0.1485309600830078,
+            "ok_logprob": -2.6402645111083984,
+            "margin": 2.4917335510253906
+          },
+          {
+            "name": "canInstantPayout",
+            "split": "test",
+            "gold": "bug",
+            "change": "inclusive-to-exclusive-limit",
+            "bug_logprob": -0.18901538848876953,
+            "ok_logprob": -2.2039976119995117,
+            "margin": 2.014982223510742
+          },
+          {
+            "name": "settlementWeekday",
+            "split": "test",
+            "gold": "ok",
+            "change": "commuted-addition",
+            "bug_logprob": -0.20029354095458984,
+            "ok_logprob": -2.2152204513549805,
+            "margin": 2.0149269104003906
+          },
+          {
+            "name": "payoutFeeCents",
+            "split": "test",
+            "gold": "ok",
+            "change": "folded-constant",
+            "bug_logprob": -0.20305156707763672,
+            "ok_logprob": -2.23397159576416,
+            "margin": 2.0309200286865234
+          },
+          {
+            "name": "isWeekendSettlement",
+            "split": "test",
+            "gold": "ok",
+            "change": "reordered-condition",
+            "bug_logprob": -0.11320877075195312,
+            "ok_logprob": -3.0111732482910156,
+            "margin": 2.8979644775390625
+          }
+        ],
+        "median_review_seconds": 0.4156690415002231,
+        "model_load_seconds": 0.57797387500068,
+        "peak_mlx_bytes": 1439867580
+      }
+    },
+    "proofs": [
+      {
+        "name": "interchangeFeeCents",
+        "gold": "bug",
+        "change": "round-to-floor",
+        "raw": "import { expect, test } from 'vitest';\nimport { interchangeFeeCents } from './subject';\n\ntest('regression', () => {\n  expect(interchangeFeeCents(100)).toBe(15);\n});",
+        "model_assertion": {
+          "status": "fails_on_fix",
+          "argument": "100",
+          "expected": "15",
+          "before": 1,
+          "after": 2,
+          "distinguishes": true
+        },
+        "proof": {
+          "status": "red_green",
+          "argument": "100",
+          "expected": "2",
+          "before": 1,
+          "after": 2,
+          "distinguishes": true
+        }
+      },
+      {
+        "name": "authorizationFeeCents",
+        "gold": "bug",
+        "change": "dropped-zero-guard",
+        "raw": "import { expect, test } from 'vitest';\nimport { authorizationFeeCents } from './subject';\n\ntest('regression', () => {\n  expect(authorizationFeeCents(0)).toBe(0);\n});",
+        "model_assertion": {
+          "status": "red_green",
+          "argument": "0",
+          "expected": "0",
+          "before": 30,
+          "after": 0,
+          "distinguishes": true
+        },
+        "proof": {
+          "status": "red_green",
+          "argument": "0",
+          "expected": "0",
+          "before": 30,
+          "after": 0,
+          "distinguishes": true
+        }
+      },
+      {
+        "name": "meetsMinimumCharge",
+        "gold": "bug",
+        "change": "inclusive-to-exclusive",
+        "raw": "import { expect, test } from 'vitest';\nimport { meetsMinimumCharge } from './subject';\n\ntest('regression', () => {\n  expect(meetsMinimumCharge(49)).toBe(false);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "49",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "49",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "refundableFeeCents",
+        "gold": "ok",
+        "change": "ternary-to-if",
+        "raw": "import { expect, test } from 'vitest';\nimport { refundableFeeCents } from './subject';\n\ntest('regression', () => {\n  expect(refundableFeeCents(-1)).toBe(0);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "processingFeeCents",
+        "gold": "ok",
+        "change": "named-constants",
+        "raw": "import { expect, test } from 'vitest';\nimport { processingFeeCents } from './subject';\n\ntest('regression', () => {\n  expect(processingFeeCents(100)).toBe(14);\n});",
+        "model_assertion": {
+          "status": "fails_on_fix",
+          "argument": "100",
+          "expected": "14",
+          "before": 26,
+          "after": 26,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "26",
+          "before": 26,
+          "after": 26,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "isMicroPayment",
+        "gold": "ok",
+        "change": "flip-comparison",
+        "raw": "import { expect, test } from 'vitest';\nimport { isMicroPayment } from './subject';\n\ntest('regression', () => {\n  expect(isMicroPayment(100)).toBe(false);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "vatCents",
+        "gold": "bug",
+        "change": "fractional-cents",
+        "raw": "import { expect, test } from 'vitest';\nimport { vatCents } from './subject';\n\ntest('regression', () => {\n  expect(vatCents(100)).toBe(21);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "21",
+          "before": 21,
+          "after": 21,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "21",
+          "before": 21,
+          "after": 21,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "isSmallInvoice",
+        "gold": "bug",
+        "change": "off-by-one-limit",
+        "raw": "import { expect, test } from 'vitest';\nimport { isSmallInvoice } from './subject';\n\ntest('regression', () => {\n  expect(isSmallInvoice(3999)).toBe(true);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "3999",
+          "expected": "true",
+          "before": true,
+          "after": true,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "3999",
+          "expected": "true",
+          "before": true,
+          "after": true,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "creditNoteVatCents",
+        "gold": "bug",
+        "change": "dropped-sign",
+        "raw": "import { expect, test } from 'vitest';\nimport { creditNoteVatCents } from './subject';\n\ntest('regression', () => {\n  expect(creditNoteVatCents(100)).toBe(-21);\n});",
+        "model_assertion": {
+          "status": "red_green",
+          "argument": "100",
+          "expected": "-21",
+          "before": 21,
+          "after": -21,
+          "distinguishes": true
+        },
+        "proof": {
+          "status": "red_green",
+          "argument": "100",
+          "expected": "-21",
+          "before": 21,
+          "after": -21,
+          "distinguishes": true
+        }
+      },
+      {
+        "name": "invoiceTotalCents",
+        "gold": "ok",
+        "change": "extract-variable",
+        "raw": "import { expect, test } from 'vitest';\nimport { invoiceTotalCents } from './subject';\n\ntest('regression', () => {\n  expect(invoiceTotalCents(100)).toBe(121);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "121",
+          "before": 121,
+          "after": 121,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "121",
+          "before": 121,
+          "after": 121,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "vatBandIndex",
+        "gold": "ok",
+        "change": "guards-to-ternary",
+        "raw": "import { expect, test } from 'vitest';\nimport { vatBandIndex } from './subject';\n\ntest('regression', () => {\n  expect(vatBandIndex(-1)).toBe(0);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "invoiceLineCents",
+        "gold": "ok",
+        "change": "swap-max-arguments",
+        "raw": "import { expect, test } from 'vitest';\nimport { invoiceLineCents } from './subject';\n\ntest('regression', () => {\n  expect(invoiceLineCents(-1)).toBe(0);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "monthlyInterestCents",
+        "gold": "bug",
+        "change": "dropped-monthly-division",
+        "raw": "import { expect, test } from 'vitest';\nimport { monthlyInterestCents } from './subject';\n\ntest('regression', () => {\n  expect(monthlyInterestCents(1000)).toBe(6);\n});",
+        "model_assertion": {
+          "status": "fails_on_fix",
+          "argument": "1000",
+          "expected": "6",
+          "before": 60,
+          "after": 5,
+          "distinguishes": true
+        },
+        "proof": {
+          "status": "red_green",
+          "argument": "1000",
+          "expected": "5",
+          "before": 60,
+          "after": 5,
+          "distinguishes": true
+        }
+      },
+      {
+        "name": "lateFeeCents",
+        "gold": "bug",
+        "change": "dropped-cap",
+        "raw": "import { expect, test } from 'vitest';\nimport { lateFeeCents } from './subject';\n\ntest('regression', () => {\n  expect(lateFeeCents(-1)).toBe(0);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "0",
+          "before": 0,
+          "after": 0,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "remainingTermMonths",
+        "gold": "bug",
+        "change": "dropped-clamp",
+        "raw": "import { expect, test } from 'vitest';\nimport { remainingTermMonths } from './subject';\n\ntest('regression', () => {\n  expect(remainingTermMonths(-1)).toBe(0);\n});",
+        "model_assertion": {
+          "status": "fails_on_fix",
+          "argument": "-1",
+          "expected": "0",
+          "before": 37,
+          "after": 37,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "37",
+          "before": 37,
+          "after": 37,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "balanceAfterPaymentCents",
+        "gold": "ok",
+        "change": "named-constant",
+        "raw": "import { expect, test } from 'vitest';\nimport { balanceAfterPaymentCents } from './subject';\n\ntest('regression', () => {\n  expect(balanceAfterPaymentCents(100000)).toBe(75000);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100000",
+          "expected": "75000",
+          "before": 75000,
+          "after": 75000,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100000",
+          "expected": "75000",
+          "before": 75000,
+          "after": 75000,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "isInGracePeriod",
+        "gold": "ok",
+        "change": "de-morgan",
+        "raw": "import { expect, test } from 'vitest';\nimport { isInGracePeriod } from './subject';\n\ntest('regression', () => {\n  expect(isInGracePeriod(-1)).toBe(false);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "-1",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "arrearsCategory",
+        "gold": "ok",
+        "change": "reordered-guards",
+        "raw": "import { expect, test } from 'vitest';\nimport { arrearsCategory } from './subject';\n\ntest('regression', () => {\n  expect(arrearsCategory(100)).toBe(3);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "3",
+          "before": 3,
+          "after": 3,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "3",
+          "before": 3,
+          "after": 3,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "payoutAfterReserveCents",
+        "gold": "bug",
+        "change": "floor-to-round",
+        "raw": "import { expect, test } from 'vitest';\nimport { payoutAfterReserveCents } from './subject';\n\ntest('regression', () => {\n  expect(payoutAfterReserveCents(100)).toBe(90);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "90",
+          "before": 90,
+          "after": 90,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "90",
+          "before": 90,
+          "after": 90,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "eurToUsdCents",
+        "gold": "bug",
+        "change": "inverted-rate",
+        "raw": "import { expect, test } from 'vitest';\nimport { eurToUsdCents } from './subject';\n\ntest('regression', () => {\n  expect(eurToUsdCents(100)).toBe(108);\n});",
+        "model_assertion": {
+          "status": "red_green",
+          "argument": "100",
+          "expected": "108",
+          "before": 93,
+          "after": 108,
+          "distinguishes": true
+        },
+        "proof": {
+          "status": "red_green",
+          "argument": "100",
+          "expected": "108",
+          "before": 93,
+          "after": 108,
+          "distinguishes": true
+        }
+      },
+      {
+        "name": "canInstantPayout",
+        "gold": "bug",
+        "change": "inclusive-to-exclusive-limit",
+        "raw": "import { expect, test } from 'vitest';\nimport { canInstantPayout } from './subject';\n\ntest('regression', () => {\n  expect(canInstantPayout(1000)).toBe(true);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "1000",
+          "expected": "true",
+          "before": true,
+          "after": true,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "1000",
+          "expected": "true",
+          "before": true,
+          "after": true,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "settlementWeekday",
+        "gold": "ok",
+        "change": "commuted-addition",
+        "raw": "import { expect, test } from 'vitest';\nimport { settlementWeekday } from './subject';\n\ntest('regression', () => {\n  expect(settlementWeekday(0)).toBe(2);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "0",
+          "expected": "2",
+          "before": 2,
+          "after": 2,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "0",
+          "expected": "2",
+          "before": 2,
+          "after": 2,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "payoutFeeCents",
+        "gold": "ok",
+        "change": "folded-constant",
+        "raw": "import { expect, test } from 'vitest';\nimport { payoutFeeCents } from './subject';\n\ntest('regression', () => {\n  expect(payoutFeeCents(100)).toBe(5000);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "5000",
+          "before": 5000,
+          "after": 5000,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "100",
+          "expected": "5000",
+          "before": 5000,
+          "after": 5000,
+          "distinguishes": false
+        }
+      },
+      {
+        "name": "isWeekendSettlement",
+        "gold": "ok",
+        "change": "reordered-condition",
+        "raw": "import { expect, test } from 'vitest';\nimport { isWeekendSettlement } from './subject';\n\ntest('regression', () => {\n  expect(isWeekendSettlement(7)).toBe(false);\n});",
+        "model_assertion": {
+          "status": "passes_both",
+          "argument": "7",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        },
+        "proof": {
+          "status": "passes_both",
+          "argument": "7",
+          "expected": "false",
+          "before": false,
+          "after": false,
+          "distinguishes": false
+        }
+      }
+    ],
+    "proof_generation_seconds": [
+      1.2485774579999998,
+      0.624690957999519,
+      0.5706435829997645,
+      0.6321491660000902,
+      0.6220012080002562,
+      0.5533423749993744,
+      0.5758546660008506,
+      0.5587102079998658,
+      0.6394435829997747,
+      0.6312333749992831,
+      0.5765722919995824,
+      0.5655742500002816,
+      0.6128255829999034,
+      0.5603463750003357,
+      0.5410916250002629,
+      0.6906856670002526,
+      0.5467221250000875,
+      0.6471133750001172,
+      0.6931995839995579,
+      0.7526740840003185,
+      0.692825332999746,
+      0.5947337079996942,
+      0.6612607079996451,
+      0.6003137919997243
+    ]
+  },
+  "summary": {
+    "arms": {
+      "base": {
+        "bug_prs": 12,
+        "flagged_bug_prs": 12,
+        "comments_on_bug_prs": 5,
+        "advisory_on_bug_prs": 7,
+        "refactor_prs": 12,
+        "flagged_refactor_prs": 12,
+        "comments_on_refactor_prs": 0,
+        "advisory_on_refactor_prs": 12,
+        "flagged_training_like_refactors": 3
+      },
+      "base_calibrated": {
+        "bug_prs": 12,
+        "flagged_bug_prs": 7,
+        "comments_on_bug_prs": 2,
+        "advisory_on_bug_prs": 5,
+        "refactor_prs": 12,
+        "flagged_refactor_prs": 12,
+        "comments_on_refactor_prs": 0,
+        "advisory_on_refactor_prs": 12,
+        "flagged_training_like_refactors": 3
+      },
+      "tuned": {
+        "bug_prs": 12,
+        "flagged_bug_prs": 12,
+        "comments_on_bug_prs": 5,
+        "advisory_on_bug_prs": 7,
+        "refactor_prs": 12,
+        "flagged_refactor_prs": 12,
+        "comments_on_refactor_prs": 0,
+        "advisory_on_refactor_prs": 12,
+        "flagged_training_like_refactors": 3
+      },
+      "prover_only": {
+        "bug_prs": 12,
+        "flagged_bug_prs": 12,
+        "comments_on_bug_prs": 5,
+        "advisory_on_bug_prs": 7,
+        "refactor_prs": 12,
+        "flagged_refactor_prs": 12,
+        "comments_on_refactor_prs": 0,
+        "advisory_on_refactor_prs": 12,
+        "flagged_training_like_refactors": 3
+      }
+    },
+    "prover": {
+      "bug_prs": 12,
+      "own_assertion_red_green": 3,
+      "distinguishing_inputs": 5,
+      "proofs": 5,
+      "proofs_on_refactor_prs": 0,
+      "proofs_by_difference_density": {
+        "narrow": {
+          "bug_prs": 4,
+          "proofs": 1
+        },
+        "medium": {
+          "bug_prs": 4,
+          "proofs": 1
+        },
+        "wide": {
+          "bug_prs": 4,
+          "proofs": 3
+        }
+      }
+    }
+  },
+  "training": {
+    "elapsed_seconds": 119.01746779200039,
+    "steps_per_second": 2.016510722774185,
+    "peak_mlx_bytes": 1535063628,
+    "longest_chat_tokens": 196
+  },
+  "resumed_stages": [],
+  "environment": {
+    "chip": "Apple M1 Pro",
+    "macos": "26.5.1",
+    "python": "3.12.10",
+    "node": "v22.22.2",
+    "vitest": "3.2.7",
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.2",
+    "regex": "2026.11.19"
+  }
+}

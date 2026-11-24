@@ -1,0 +1,113 @@
+{
+  "split": "valid",
+  "prompt": "original",
+  "settings": {
+    "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "temperature": 0.0,
+    "max_tokens": 192,
+    "attempts": 1
+  },
+  "rows": [
+    {
+      "name": "prorateCents",
+      "domain": "subscriptions",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function prorateCents(daysLeft: number) {\n   const share = daysLeft / 30;\n-  return Math.floor(500 * share);\n+  return Math.round(500 * share);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { prorateCents } from './subject';\n\ntest('prorateCents should return 0 for 0 days left', () => {\n  expect(prorateCents(0)).toBe(0);\n});\n```",
+      "status": "passes_both",
+      "argument": "0",
+      "expected": "0",
+      "before": 0,
+      "after": 0,
+      "distinguishes": false,
+      "generation_seconds": 1.4105541250028182
+    },
+    {
+      "name": "isTrialActive",
+      "domain": "subscriptions",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function isTrialActive(elapsedDays: number) {\n-  return elapsedDays !== 14;\n+  return elapsedDays < 14;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { isTrialActive } from './subject';\n\ntest('isTrialActive should return true for elapsedDays less than 14', () => {\n  expect(isTrialActive(13)).toBe(true);\n});\n```",
+      "status": "passes_both",
+      "argument": "13",
+      "expected": "true",
+      "before": true,
+      "after": true,
+      "distinguishes": false,
+      "generation_seconds": 0.6241647499991814
+    },
+    {
+      "name": "seatOverageCents",
+      "domain": "subscriptions",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function seatOverageCents(seats: number) {\n   const overage = seats - 3;\n-  return overage * 250;\n+  return overage > 0 ? overage * 250 : 0;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { seatOverageCents } from './subject';\n\ntest('seatOverageCents should return 0 for 0 seats', () => {\n  expect(seatOverageCents(0)).toBe(0);\n});\n```",
+      "status": "red_green",
+      "argument": "0",
+      "expected": "0",
+      "before": -750,
+      "after": 0,
+      "distinguishes": true,
+      "generation_seconds": 0.688889167002344
+    },
+    {
+      "name": "annualCyclesCovered",
+      "domain": "subscriptions",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function annualCyclesCovered(monthsPaid: number) {\n-  return Math.min(1, Math.floor(monthsPaid / 12));\n+  return Math.floor(monthsPaid / 12);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { annualCyclesCovered } from './subject';\n\ntest('annualCyclesCovered should return 0 for monthsPaid less than 12', () => {\n  expect(annualCyclesCovered(11)).toBe(0);\n});\n```",
+      "status": "passes_both",
+      "argument": "11",
+      "expected": "0",
+      "before": 0,
+      "after": 0,
+      "distinguishes": false,
+      "generation_seconds": 0.6709512080014974
+    },
+    {
+      "name": "activeRatio",
+      "domain": "analytics",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function activeRatio(activeUsers: number) {\n   const cohortSize = 200;\n-  return (cohortSize - activeUsers) / cohortSize;\n+  return activeUsers / cohortSize;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { activeRatio } from './subject';\n\ntest('activeRatio should return 0 for 0 active users', () => {\n  expect(activeRatio(0)).toBe(0);\n});\n```",
+      "status": "red_green",
+      "argument": "0",
+      "expected": "0",
+      "before": 1,
+      "after": 0,
+      "distinguishes": true,
+      "generation_seconds": 0.5550804589984182
+    },
+    {
+      "name": "evenHistogramBin",
+      "domain": "analytics",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function evenHistogramBin(count: number) {\n   const bin = Math.floor(count / 5);\n-  return bin % 2 === 1;\n+  return bin % 2 === 0;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { evenHistogramBin } from './subject';\n\ntest('evenHistogramBin should return true for even counts', () => {\n  expect(evenHistogramBin(10)).toBe(true);\n});\n\ntest('evenHistogramBin should return false for odd counts', () => {\n  expect(evenHistogramBin(11)).toBe(false);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 0.797070333002921
+    },
+    {
+      "name": "lastCompleteHour",
+      "domain": "analytics",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function lastCompleteHour(elapsedMinutes: number) {\n-  return Math.trunc(elapsedMinutes / 60);\n+  return Math.floor(elapsedMinutes / 60);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { lastCompleteHour } from './subject';\n\ntest('lastCompleteHour should return the correct value for a numeric input', () => {\n  expect(lastCompleteHour(120)).toBe(2);\n});\n\ntest('lastCompleteHour should return the correct value for a boolean input', () => {\n  expect(lastCompleteHour(true)).toBe(1);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 1.1915208339996752
+    },
+    {
+      "name": "nextSamplePowerOfTwo",
+      "domain": "analytics",
+      "split": "valid",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function nextSamplePowerOfTwo(samples: number) {\n-  const exponent = Math.floor(Math.log2(samples));\n+  const exponent = Math.ceil(Math.log2(samples));\n   return 2 ** exponent;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { nextSamplePowerOfTwo } from './subject';\n\ntest('nextSamplePowerOfTwo should return the correct value for a numeric input', () => {\n  expect(nextSamplePowerOfTwo(10)).toBe(16);\n});\n\ntest('nextSamplePowerOfTwo should return the correct value for a boolean input', () => {\n  expect(nextSamplePowerOfTwo(true)).toBe(2);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 0.8941369159983878
+    }
+  ],
+  "model_load_seconds": 2.5332321659989248,
+  "median_generation_seconds": 0.7429797500026325,
+  "peak_mlx_bytes": 1263579004
+}

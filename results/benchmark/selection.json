@@ -1,0 +1,12 @@
+{
+  "dataset_sha256": "15ba5ef5655c4b176e0322c816a81489546beae3e22d8ac73faa63c0a4d0bf3a",
+  "prompt": "original",
+  "checkpoint_step": 48,
+  "settings": {
+    "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "temperature": 0.0,
+    "max_tokens": 192,
+    "attempts": 1
+  }
+}

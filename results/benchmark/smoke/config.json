@@ -1,0 +1,27 @@
+{
+  "prompt": "original",
+  "dataset_sha256": "15ba5ef5655c4b176e0322c816a81489546beae3e22d8ac73faa63c0a4d0bf3a",
+  "model_revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "mlx_lm": {
+    "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "data": "data",
+    "train": true,
+    "seed": 42,
+    "mask_prompt": true,
+    "iters": 8,
+    "batch_size": 1,
+    "max_seq_length": 512,
+    "num_layers": 4,
+    "learning_rate": 0.0001,
+    "steps_per_report": 8,
+    "steps_per_eval": 8,
+    "val_batches": -1,
+    "save_every": 8,
+    "adapter_path": "adapters",
+    "lora_parameters": {
+      "rank": 8,
+      "scale": 16.0,
+      "dropout": 0.0
+    }
+  }
+}

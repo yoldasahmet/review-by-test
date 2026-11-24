@@ -1,0 +1,126 @@
+{
+  "split": "test",
+  "prompt": "original",
+  "settings": {
+    "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "temperature": 0.0,
+    "max_tokens": 192,
+    "attempts": 1
+  },
+  "rows": [
+    {
+      "name": "inclusiveRowsLeft",
+      "domain": "cursor pagination",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function inclusiveRowsLeft(lastIndex: number) {\n   const lastAvailable = 99;\n-  return lastAvailable - lastIndex;\n+  return lastAvailable - lastIndex + 1;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { inclusiveRowsLeft } from './subject';\n\ntest('inclusiveRowsLeft should return the correct number of rows left', () => {\n  expect(inclusiveRowsLeft(0)).toBe(100);\n  expect(inclusiveRowsLeft(100)).toBe(0);\n  expect(inclusiveRowsLeft(99)).toBe(1);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 1.013558374997956
+    },
+    {
+      "name": "cursorExpiresAt",
+      "domain": "cursor pagination",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function cursorExpiresAt(createdAtSeconds: number) {\n   const lifetimeMinutes = 15;\n-  return (createdAtSeconds + lifetimeMinutes) * 60;\n+  return createdAtSeconds + lifetimeMinutes * 60;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { cursorExpiresAt } from './subject';\n\ntest('cursorExpiresAt should return the correct value', () => {\n  const createdAtSeconds = 1633072800;\n  const expectedValue = 1633074400;\n  expect(cursorExpiresAt(createdAtSeconds)).toBe(expectedValue);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 0.8069643329981773
+    },
+    {
+      "name": "shouldFetchAnotherBatch",
+      "domain": "cursor pagination",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function shouldFetchAnotherBatch(batchSize: number) {\n   const limit = 25;\n-  return batchSize > 0 && batchSize !== limit;\n+  return batchSize === limit;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { shouldFetchAnotherBatch } from './subject';\n\ntest('shouldFetchAnotherBatch should return true when batchSize is equal to limit', () => {\n  expect(shouldFetchAnotherBatch(limit)).toBe(true);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 0.5997255830006907
+    },
+    {
+      "name": "clampEmptyCursor",
+      "domain": "cursor pagination",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function clampEmptyCursor(cursor: number) {\n-  return cursor || 1;\n+  return cursor < 0 ? 1 : cursor;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { clampEmptyCursor } from './subject';\n\ntest('clampEmptyCursor should return 1 for negative input', () => {\n  expect(clampEmptyCursor(-1)).toBe(1);\n});\n```",
+      "status": "red_green",
+      "argument": "-1",
+      "expected": "1",
+      "before": -1,
+      "after": 1,
+      "distinguishes": true,
+      "generation_seconds": 0.5669092079988332
+    },
+    {
+      "name": "resumeIndex",
+      "domain": "cursor pagination",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function resumeIndex(encodedCursor: number) {\n   // The cursor stores the last row already seen.\n-  return encodedCursor;\n+  return encodedCursor + 1;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { resumeIndex } from './subject';\n\ntest('resumeIndex should return the encoded cursor incremented by 1', () => {\n  expect(resumeIndex(10)).toBe(11);\n});\n```",
+      "status": "red_green",
+      "argument": "10",
+      "expected": "11",
+      "before": 10,
+      "after": 11,
+      "distinguishes": true,
+      "generation_seconds": 0.5765058329998283
+    },
+    {
+      "name": "padToEvenWidth",
+      "domain": "media processing",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function padToEvenWidth(pixels: number) {\n-  return pixels + 2 - (pixels % 2);\n+  return pixels + (pixels % 2);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { padToEvenWidth } from './subject';\n\ntest('padToEvenWidth should return the same value for even numbers', () => {\n  expect(padToEvenWidth(4)).toBe(4);\n});\n\ntest('padToEvenWidth should return the same value for odd numbers', () => {\n  expect(padToEvenWidth(5)).toBe(7);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 0.981565791000321
+    },
+    {
+      "name": "hasRenderableFrames",
+      "domain": "media processing",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function hasRenderableFrames(frameCount: number) {\n-  return Number.isInteger(frameCount);\n+  return Number.isInteger(frameCount) && frameCount > 0;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { hasRenderableFrames } from './subject';\n\ntest('hasRenderableFrames should return true for positive integer frameCount', () => {\n  expect(hasRenderableFrames(5)).toBe(true);\n});\n\ntest('hasRenderableFrames should return false for non-integer frameCount', () => {\n  expect(hasRenderableFrames(3.14)).toBe(false);\n});\n\ntest('hasRenderableFrames should return false for zero frameCount', () => {\n  expect(hasRenderableFrames(0)).toBe(false);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 1.0982845420003287
+    },
+    {
+      "name": "isSupportedAudioRate",
+      "domain": "media processing",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,3 +1,3 @@\n export function isSupportedAudioRate(hertz: number) {\n-  return hertz >= 44100 && hertz <= 48000;\n+  return hertz === 44100 || hertz === 48000;\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { isSupportedAudioRate } from './subject';\n\ntest('isSupportedAudioRate should return true for 44100 Hz', () => {\n  expect(isSupportedAudioRate(44100)).toBe(true);\n});\n\ntest('isSupportedAudioRate should return true for 48000 Hz', () => {\n  expect(isSupportedAudioRate(48000)).toBe(true);\n});\n\ntest('isSupportedAudioRate should return false for 43000 Hz', () => {\n  expect(isSupportedAudioRate(43000)).toBe(false);\n});\n\ntest('isSupportedAudioRate should return false for 49000 Hz', () => {\n  expect(isSupportedAudioRate(49000)).toBe(false);\n});\n```",
+      "status": "outside_format",
+      "generation_seconds": 1.5342260420002276
+    },
+    {
+      "name": "previewWidth",
+      "domain": "media processing",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function previewWidth(sourceWidth: number) {\n   const scale = 0.25;\n-  return Math.round(sourceWidth) * scale;\n+  return Math.round(sourceWidth * scale);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { previewWidth } from './subject';\n\ntest('previewWidth should return the rounded sourceWidth * scale', () => {\n  expect(previewWidth(100)).toBe(25);\n});\n```",
+      "status": "passes_both",
+      "argument": "100",
+      "expected": "25",
+      "before": 25,
+      "after": 25,
+      "distinguishes": false,
+      "generation_seconds": 0.5899377499990806
+    },
+    {
+      "name": "transparentPixelAlpha",
+      "domain": "media processing",
+      "split": "test",
+      "diff": "--- a/src/subject.ts\n+++ b/src/subject.ts\n@@ -1,4 +1,4 @@\n export function transparentPixelAlpha(opacityPercent: number) {\n-  if (opacityPercent === 0) return 255;\n+  if (opacityPercent === 0) return 0;\n   return Math.round(opacityPercent * 255 / 100);\n }\n",
+      "raw": "```typescript\nimport { expect, test } from 'vitest';\nimport { transparentPixelAlpha } from './subject';\n\ntest('transparentPixelAlpha should return 0 for 0 opacity', () => {\n  expect(transparentPixelAlpha(0)).toBe(0);\n});\n```",
+      "status": "red_green",
+      "argument": "0",
+      "expected": "0",
+      "before": 255,
+      "after": 0,
+      "distinguishes": true,
+      "generation_seconds": 0.7138833749995683
+    }
+  ],
+  "model_load_seconds": 0.6247257920003904,
+  "median_generation_seconds": 0.7604238539988728,
+  "peak_mlx_bytes": 1267839024
+}

@@ -12,4 +12,9 @@ jobs:
         with:
           python-version: '3.12'
       - run: npm ci
+      - run: python -m unittest
       - run: python replay.py
+      - run: python experiment.py replay
+      - run: python review_experiment.py replay
+      - run: python review_tuning_experiment.py replay
+      - run: python review_prover_experiment.py replay
